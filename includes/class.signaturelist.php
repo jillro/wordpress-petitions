@@ -3,7 +3,7 @@
 /**
  * Class for displaying signatures via [signaturelist] shortcode
  */
-class dk_speakout_Signaturelist
+class guilro_petitions_Signaturelist
 {
 
 	/**
@@ -22,8 +22,8 @@ class dk_speakout_Signaturelist
 	public static function table( $id, $start, $limit, $context = 'shortcode', $dateformat = 'M d, Y', $nextbuttontext = '&gt;', $prevbuttontext = '&lt;' ) {
 
 		include_once( 'class.signature.php' );
-		$the_signatures = new dk_speakout_Signature();
-		$options = get_option( 'dk_speakout_options' );
+		$the_signatures = new guilro_petitions_Signature();
+		$options = get_option( 'guilro_petitions_options' );
 
 		// get list of columns to display - as defined in settings
 		$columns = unserialize( $options['signaturelist_columns'] );

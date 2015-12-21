@@ -1,11 +1,11 @@
 <?php
 
 // plugin installation routine
-function dk_speakout_install() {
+function guilro_petitions_install() {
 
-	global $wpdb, $db_petitions, $db_signatures, $dk_speakout_version;
+	global $wpdb, $db_petitions, $db_signatures, $guilro_petitions_version;
 
-	dk_speakout_translate();
+	guilro_petitions_translate();
 
 	$sql_create_tables = "
 		CREATE TABLE `$db_petitions` (
@@ -61,18 +61,18 @@ function dk_speakout_install() {
 		"petitions_rows"         => "20",
 		"signatures_rows"        => "50",
 		"petition_theme"         => "default",
-		"button_text"            => __( "Sign Now", "dk_speakout" ),
-		"expiration_message"     => __( "This petition is now closed.", "dk_speakout" ),
-		"success_message"        => "<strong>" . __( "Thank you", "dk_speakout" ) . ", %first_name%.</strong>\r\n<p>" . __( "Your signature has been added.", "dk_speakout" ) . "</p>",
-		"already_signed_message" => __( "This petition has already been signed using your email address.", "dk_speakout"),
-		"share_message"          => __( "Share this with your friends:", "dk_speakout" ),
-		"confirm_subject"        => __( "Please confirm your email address", "dk_speakout" ),
-		"confirm_message"        => __( "Hello", "dk_speakout" ) . " %first_name%\r\n\r\n" . __( "Thank you for singing our petition", "dk_speakout" ) . ". " . __( "Please confirm your email address by clicking the link below:", "dk_speakout" ) . "\r\n%confirmation_link%\r\n\r\n" . get_bloginfo( "name" ),
+		"button_text"            => __( "Sign Now", "guilro_petitions" ),
+		"expiration_message"     => __( "This petition is now closed.", "guilro_petitions" ),
+		"success_message"        => "<strong>" . __( "Thank you", "guilro_petitions" ) . ", %first_name%.</strong>\r\n<p>" . __( "Your signature has been added.", "guilro_petitions" ) . "</p>",
+		"already_signed_message" => __( "This petition has already been signed using your email address.", "guilro_petitions"),
+		"share_message"          => __( "Share this with your friends:", "guilro_petitions" ),
+		"confirm_subject"        => __( "Please confirm your email address", "guilro_petitions" ),
+		"confirm_message"        => __( "Hello", "guilro_petitions" ) . " %first_name%\r\n\r\n" . __( "Thank you for singing our petition", "guilro_petitions" ) . ". " . __( "Please confirm your email address by clicking the link below:", "guilro_petitions" ) . "\r\n%confirmation_link%\r\n\r\n" . get_bloginfo( "name" ),
 		"confirm_email"          => get_bloginfo( "name" ) . " <" . get_bloginfo( "admin_email" ) . ">",
 		"optin_default"          => "unchecked",
 		"display_count"          => "1",
 		"signaturelist_theme"    => "default",
-		"signaturelist_header"   => __( "Latest Signatures", "dk_speakout" ),
+		"signaturelist_header"   => __( "Latest Signatures", "guilro_petitions" ),
 		"signaturelist_rows"     => "50",
 		"signaturelist_columns"  => serialize( array( "sig_date" ) ),
 		"widget_theme"           => "default",
@@ -80,22 +80,22 @@ function dk_speakout_install() {
 		"signaturelist_privacy"		=> "enabled"
 	);
 	// add plugin options to wp_options table
-	add_option( 'dk_speakout_options', $options );
-	add_option( 'dk_speakout_version', $dk_speakout_version );
+	add_option( 'guilro_petitions_options', $options );
+	add_option( 'guilro_petitions_version', $guilro_petitions_version );
 
 	// register options for translation in WPML
 	include_once( 'class.wpml.php' );
-	$wpml = new dk_speakout_WPML();
+	$wpml = new guilro_petitions_WPML();
 	$wpml->register_options( $options );
 }
 
 // run plugin update script if needed
-add_action( 'plugins_loaded', 'dk_speakout_update' );
-function dk_speakout_update() {
+add_action( 'plugins_loaded', 'guilro_petitions_update' );
+function guilro_petitions_update() {
 
-	global $wpdb, $db_petitions, $db_signatures, $dk_speakout_version;
-	$installed_version = get_option( 'dk_speakout_version' );
-	$options           = get_option( 'dk_speakout_options' );
+	global $wpdb, $db_petitions, $db_signatures, $guilro_petitions_version;
+	$installed_version = get_option( 'guilro_petitions_version' );
+	$options           = get_option( 'guilro_petitions_options' );
 
 ///////////////////////////////////////////////
 //    how to do an update
@@ -135,23 +135,23 @@ function dk_speakout_update() {
 	}
 
 
-	if ( $installed_version != $dk_speakout_version ) {
+	if ( $installed_version != $guilro_petitions_version ) {
 
 		// create database tables and options
-		dk_speakout_install();
+		guilro_petitions_install();
 
 		// options added after initial release
 		if ( ! array_key_exists( 'confirm_subject', $options ) ) {
-			$options['confirm_subject'] = __( 'Please confirm your email address', 'dk_speakout' );
+			$options['confirm_subject'] = __( 'Please confirm your email address', 'guilro_petitions' );
 		}
 		if ( ! array_key_exists( 'confirm_message', $options ) ) {
-			$options['confirm_message'] = __( "Hello", "dk_speakout" ) . " %first_name%\r\n\r\n" . __( "Thank you for singing our petition", "dk_speakout" ) . ". " . __( "Please confirm your email address by clicking the link below:", "dk_speakout" ) . "\r\n%confirmation_link%\r\n\r\n" . get_bloginfo( "name" );
+			$options['confirm_message'] = __( "Hello", "guilro_petitions" ) . " %first_name%\r\n\r\n" . __( "Thank you for singing our petition", "guilro_petitions" ) . ". " . __( "Please confirm your email address by clicking the link below:", "guilro_petitions" ) . "\r\n%confirmation_link%\r\n\r\n" . get_bloginfo( "name" );
 		}
 		if ( ! array_key_exists( 'confirm_email', $options ) ) {
 			$options['confirm_email'] = get_bloginfo( 'name' ) . ' <' . get_bloginfo( 'admin_email' ) . '>';
 		}
 		if ( ! array_key_exists( 'signaturelist_header', $options ) ) {
-			$options['signaturelist_header'] = __( 'Latest Signatures', 'dk_speakout' );
+			$options['signaturelist_header'] = __( 'Latest Signatures', 'guilro_petitions' );
 		}
 		if ( ! array_key_exists( 'signaturelist_rows', $options ) ) {
 			$options['signaturelist_rows'] = '50';
@@ -177,12 +177,12 @@ function dk_speakout_update() {
 		if ( ! array_key_exists( 'signaturelist_privacy', $options ) ) {
 			$options['signaturelist_privacy'] = "enabled";
 		}
-		update_option( 'dk_speakout_options', $options );
+		update_option( 'guilro_petitions_options', $options );
 	}
 
 	// update plugin version tag in db
-	if ( $installed_version != $dk_speakout_version ) {
-		update_option( 'dk_speakout_version', $dk_speakout_version );
+	if ( $installed_version != $guilro_petitions_version ) {
+		update_option( 'guilro_petitions_version', $guilro_petitions_version );
 	}
 }
 

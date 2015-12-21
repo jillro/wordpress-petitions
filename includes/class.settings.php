@@ -3,7 +3,7 @@
 /**
  * Class for accessing and manipulating settings array in SpeakOut! Email Petitions plugin for WordPress
  */
-class dk_speakout_Settings
+class guilro_petitions_Settings
 {
 	public $petitions_rows;
 	public $signatures_rows;
@@ -37,7 +37,7 @@ class dk_speakout_Settings
 	 */
 	public function retrieve()
 	{
-		$options  = get_option( 'dk_speakout_options' );
+		$options  = get_option( 'guilro_petitions_options' );
 
 		$this->petitions_rows         = $options['petitions_rows'];
 		$this->signatures_rows        = $options['signatures_rows'];
@@ -93,7 +93,7 @@ class dk_speakout_Settings
 			'signaturelist_privacy'  => $this->signaturelist_privacy
 		);
 
-		update_option( 'dk_speakout_options', $options );
+		update_option( 'guilro_petitions_options', $options );
 	}
 
 	/**

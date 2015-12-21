@@ -3,7 +3,7 @@
 /**
  * Class for accessing and manipulating petition data in SpeakOut! Email Petitions plugin for WordPress
  */
-class dk_speakout_Petition
+class guilro_petitions_Petition
 {
 
 	public $id;
@@ -182,7 +182,7 @@ class dk_speakout_Petition
 			$this->title = $_POST['title'];
 		}
 		else {
-			$this->title = __( 'No Title', 'dk_speakout' );
+			$this->title = __( 'No Title', 'guilro_petitions' );
 		}
 
 		// Petition Box

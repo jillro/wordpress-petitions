@@ -3,7 +3,7 @@
 /**
  * Allows integraion with the WPML translation plugin
  */
-class dk_speakout_WPML
+class guilro_petitions_WPML
 {
 	/**
 	 * Registers custom petition form strings for translation with the WPML plugin if WPML is installed
@@ -29,7 +29,7 @@ class dk_speakout_WPML
 	/**
 	 * Registers the plugin's options strings for translation in WPML
 	 *
-	 * @param array $options dk_speakout_options array stored in wp_options
+	 * @param array $options guilro_petitions_options array stored in wp_options
 	 */
 	public function register_options( $options )
 	{
@@ -110,7 +110,7 @@ class dk_speakout_WPML
 	 * Processes translation for custom petition form strings if WPML plugin is installed
 	 *
 	 * @param object $petition the current petition object
-	 * @return array translated version of dk_speakout_options array
+	 * @return array translated version of guilro_petitions_options array
 	 */
 	public function translate_options( $options )
 	{

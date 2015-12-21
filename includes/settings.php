@@ -1,6 +1,6 @@
 <?php
 
-function dk_speakout_settings_page() {
+function guilro_petitions_settings_page() {
 
 	// security check
 	if ( ! current_user_can( 'manage_options' ) ) wp_die( 'Insufficient privileges: You need to be an administrator to do that.' );
@@ -8,8 +8,8 @@ function dk_speakout_settings_page() {
 	include_once( 'class.speakout.php' );
 	include_once( 'class.settings.php' );
 	include_once( 'class.wpml.php' );
-	$the_settings = new dk_speakout_Settings();
-	$wpml         = new dk_speakout_WPML();
+	$the_settings = new guilro_petitions_Settings();
+	$wpml         = new guilro_petitions_WPML();
 
 	$action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '';
 	$tab    = isset( $_REQUEST['tab'] ) ? $_REQUEST['tab'] : 'dk-speakout-tab-01';
@@ -19,16 +19,16 @@ function dk_speakout_settings_page() {
 		case 'update' :
 
 			// security check
-			check_admin_referer( 'dk_speakout-update_settings' );
+			check_admin_referer( 'guilro_petitions-update_settings' );
 
 			$the_settings->update();
 			$the_settings->retrieve();
 
 			// attempt to resgister strings for translation in WPML
-			$options = get_option( 'dk_speakout_options' );
+			$options = get_option( 'guilro_petitions_options' );
 			$wpml->register_options( $options );
 
-			$message_update = __( 'Settings updated.', 'dk_speakout' );
+			$message_update = __( 'Settings updated.', 'guilro_petitions' );
 
 			break;
 
@@ -39,7 +39,7 @@ function dk_speakout_settings_page() {
 			$message_update = '';
 	}
 
-	$nonce  = 'dk_speakout-update_settings';
+	$nonce  = 'guilro_petitions-update_settings';
 	$action = 'update';
 	include_once( dirname( __FILE__ ) . '/settings.view.php' );
 }

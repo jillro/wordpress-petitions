@@ -1,22 +1,23 @@
-=== SpeakOut! Email Petitions ===
-Contributors: 123host, kreg
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4PPYZ8K2KLXUJ
+=== Petitions ===
+Contributors: guilro, 123host, kreg
+Donate link: https://www.paypal.me/guilro
 Tags: petition, activism, community, email, social media
-Requires at least: 3.4
-Tested up to: 4.1
-Stable tag: 1.1.3
+Requires at least: 4.4
+Tested up to: 4.4
+Stable tag: 0.1.1
+License: GPLv2 or later
 
-SpeakOut! Email Petitions makes it easy to add petitions to your website and rally your community to support a cause by using direct action.
+Petitions makes it easy to add petitions to your website and rally your community to support a cause by using direct action.
 
 == Description ==
 
-SpeakOut! Email Petitions allows you to easily create petition forms on your site.
+Petitions is a fork from SpeakOut! Email Petitions which was not maintained anymore, itself fork of the SpeakOut! plugin by Kreg Wallace.
 
-When visitors to your site submit the petition form, a copy of your message will be sent to the email address you specified e.g. your mayor. The petition message will be signed with the contact information provided by the form submitter. After signing the petition, visitors will have the option of sharing your petition page with their followers on Facebook or Twitter.
+Petitions allows you to easily create petition forms on your site.
+
+After signing the petition, visitors will have the option of sharing your petition page with their followers on Facebook or Twitter.
 
 Signatures are stored in the database and can be easily exported to CSV format for further analysis. You may set a goal for the number of signatures you hope to collect and then watch as a progress bar tracks your petition's advance toward it's goal. Petitions may also be configured to stop accepting new signatures on a specified date.
-
-This plugin is a fork of the SpeakOut! plugin by Kreg Wallace that was quite good but needed updates and appears to have been abandoned.
 
 = Localizations =
 
@@ -31,15 +32,13 @@ This plugin is a fork of the SpeakOut! plugin by Kreg Wallace that was quite goo
 * French **fr_FR**
 * Spanish **es_ES**
 
-Visit the [SpeakOut! Email Petitions website](http://speakout.123host.com.au/) to learn more.
-
 == Installation ==
 
 Use the automatic installer. Or...
 
 1. Download and unzip the the plugin zip file.
-2. Upload the `speakout-email-petitions` folder to your `/wp-content/plugins/` directory
-3. Activate SpeakOut! Email Petitions through the "Plugins" menu in the WordPress admin.
+2. Upload the `petitions` folder to your `/wp-content/plugins/` directory
+3. Activate Petitions through the "Plugins" menu in the WordPress admin.
 
 == Frequently Asked Questions ==
 
@@ -50,7 +49,7 @@ Use the automatic installer. Or...
 `[emailpetition id="1"]`
 
 = Can I display the petition as a widget? =
-Yes. Once you've created a petition, go to the Widgets screen and drag the "SpeakOut! Email Petitions" widget into a sidebar. In the widget's options, enter a Title and a Call to Action and then select the petition you wish to display.
+Yes. Once you've created a petition, go to the Widgets screen and drag the "Petitions" widget into a sidebar. In the widget's options, enter a Title and a Call to Action and then select the petition you wish to display.
 
 = Why are some people not receiving the confirmation emails? =
 Some email services (like AOL, Hotmail, and a few others) do not accept mail sent from the PHP mail() function. So, people who sign your petition with an email address from one of these providers may not be able to receive a confirmation email. To get around this problem, try installing the [WP Mail SMTP plugin](http://wordpress.org/extend/plugins/wp-mail-smtp/) which will redirect calls to the PHP mail() function through your webserver's SMTP configuration.
@@ -93,39 +92,7 @@ If the CSV file looks scrambled, try changing its filename extension from .csv t
 7. Pop-up Petition form (widget)
 8. Email confirmation screen
 
-== Changelog ==
-
-= 1.1.3 =
-
-Wrong icon being displayed
-
-= 1.1.2 =
-
-File missed in commit
-
-= 1.1.1 =
-
-Getting dashboard icons right
-
-= 1.1.0 =
-
-Fix broken directory references missed as part of fork.
-
-= 1.0.0 =
-
-Initial fork of SpeakUp! with additional privacy option in setting so only display first letter of surname
-
-== Upgrade Notice ==
-= 1.1.0 =
-
-Upgrade required
-
-= 1.0.0 =
-* No upgrade at this time
-
-[More information](http://speakout.123host.com.au/)
-
-== Emailpetition Shortcode Attributes ==
+== Petition Shortcode Attributes ==
 
 The following attributes may be applied when using the `[emailpetition]` shortcode
 
@@ -193,3 +160,11 @@ Display the number (as text) of signatures collected for a given petition:
 = id =
 The ID number of your petition (required).
 `[signaturecount id="3"]`
+
+== Changelog ==
+
+* 0.1.0 fork from SpeakOut! Email Petitions
+
+== Upgrade Notice ==
+
+* no need for upgrade

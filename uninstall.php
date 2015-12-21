@@ -6,13 +6,13 @@ if( !defined( 'WP_UNINSTALL_PLUGIN' ) ) exit ();
 // otherwise...
 
 // delete options from options table
-delete_option( 'dk_speakout_options' );
-delete_option( 'dk_speakout_version' );
+delete_option( 'guilro_petitions_options' );
+delete_option( 'guilro_petitions_version' );
 
 // set variables for accessing database
 global $wpdb;
-$db_petitions = $wpdb->prefix . "dk_speakout_petitions";
-$db_signatures = $wpdb->prefix . "dk_speakout_signatures";
+$db_petitions = $wpdb->prefix . "guilro_petitions_petitions";
+$db_signatures = $wpdb->prefix . "guilro_petitions_signatures";
 $db_options = $wpdb->prefix . "options";
 
 // delete any remaining transients
@@ -24,9 +24,9 @@ $petitions = $wpdb->get_results( $sql_petition_ids );
 // loop through petitions and delete associated transients
 foreach ( $petitions as $petition ) {
 	// construct transient names
-	$transient_petition = 'dk_speakout_petition_' . $petition->id;
-	$transient_signatureslist = 'dk_speakout_signatureslist_' . $petition->id;
-	$transient_signatures_total = 'dk_speakout_signatures_total_' . $petition->id;
+	$transient_petition = 'guilro_petitions_petition_' . $petition->id;
+	$transient_signatureslist = 'guilro_petitions_signatureslist_' . $petition->id;
+	$transient_signatures_total = 'guilro_petitions_signatures_total_' . $petition->id;
 
 	// delete transients
 	delete_transient( $transient_petition );
@@ -35,7 +35,7 @@ foreach ( $petitions as $petition ) {
 }
 
 // delete widget data
-$sql_widget = "DELETE FROM $db_options WHERE option_name = 'widget_dk_speakout_petition_widget'";
+$sql_widget = "DELETE FROM $db_options WHERE option_name = 'widget_guilro_petitions_petition_widget'";
 $wpdb->query( $sql_widget );
 
 // delete custom database tables

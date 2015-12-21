@@ -3,7 +3,7 @@
 /**
  * Class for sending emails in SpeakOut! Email Petitions plugin for WordPress
  */
-class dk_speakout_Mail
+class guilro_petitions_Mail
 {
 
 	/**

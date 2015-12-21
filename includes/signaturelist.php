@@ -1,11 +1,11 @@
 <?php
 
 // register shortcode to display signatures list
-add_shortcode( 'signaturelist', 'dk_speakout_signatures_shortcode' );
-function dk_speakout_signatures_shortcode( $attr ) {
+add_shortcode( 'signaturelist', 'guilro_petitions_signatures_shortcode' );
+function guilro_petitions_signatures_shortcode( $attr ) {
 
 	include_once( 'class.signaturelist.php' );
-	$options = get_option( 'dk_speakout_options' );
+	$options = get_option( 'guilro_petitions_options' );
 
 	$id             = 1;
 	$rows           = $options['signaturelist_rows'];
@@ -35,21 +35,21 @@ function dk_speakout_signatures_shortcode( $attr ) {
 		'ajaxurl'    => admin_url( 'admin-ajax.php', $protocol ),
 		'dateformat' => $dateformat
 	);
-	wp_enqueue_script( 'dk_speakout_signaturelist_js', plugins_url( 'speakout/js/signaturelist.js' ), array( 'jquery' ) );
-	wp_localize_script( 'dk_speakout_signaturelist_js', 'dk_speakout_signaturelist_js', $params );
+	wp_enqueue_script( 'guilro_petitions_signaturelist_js', plugins_url( 'speakout/js/signaturelist.js' ), array( 'jquery' ) );
+	wp_localize_script( 'guilro_petitions_signaturelist_js', 'guilro_petitions_signaturelist_js', $params );
 
-	$table_html = dk_speakout_Signaturelist::table( $id, 0, $rows, 'shortcode', $dateformat, $nextbuttontext, $prevbuttontext );
+	$table_html = guilro_petitions_Signaturelist::table( $id, 0, $rows, 'shortcode', $dateformat, $nextbuttontext, $prevbuttontext );
 	return $table_html;
 }
 
 // load CSS on pages/posts that contain the [signaturelist] shortcode
-add_filter( 'the_posts', 'dk_speakout_signaturelist_css' );
-function dk_speakout_signaturelist_css( $posts ) {
+add_filter( 'the_posts', 'guilro_petitions_signaturelist_css' );
+function guilro_petitions_signaturelist_css( $posts ) {
 
 	// ignore if there are no posts
 	if ( empty( $posts ) ) return $posts;
 
-	$options = get_option( 'dk_speakout_options' );
+	$options = get_option( 'guilro_petitions_options' );
 
 	// set flag to determine if post contains shortcode
 	$shortcode_found = false;
@@ -68,7 +68,7 @@ function dk_speakout_signaturelist_css( $posts ) {
 
 		 // load default theme
 		if ( $theme === 'default' ) {
-			wp_enqueue_style( 'dk_speakout_signaturelist_css', plugins_url( 'speakout/css/signaturelist.css' ) );
+			wp_enqueue_style( 'guilro_petitions_signaturelist_css', plugins_url( 'speakout/css/signaturelist.css' ) );
 		}
 		// attempt to load cusom theme (petition-signaturelist.css)
 		else {
@@ -84,16 +84,16 @@ function dk_speakout_signaturelist_css( $posts ) {
 
 				// use child theme if it exists
 				if ( file_exists( $child_theme_path ) ) {
-					wp_enqueue_style( 'dk_speakout_signaturelist_css', $child_theme_url );
+					wp_enqueue_style( 'guilro_petitions_signaturelist_css', $child_theme_url );
 				}
 				// else try to load style from parent theme folder
 				else {
-					wp_enqueue_style( 'dk_speakout_signaturelist_css', $parent_theme_url );
+					wp_enqueue_style( 'guilro_petitions_signaturelist_css', $parent_theme_url );
 				}
 			}
 			// if not using a child theme, just try to load style from active theme folder
 			else {
-				wp_enqueue_style( 'dk_speakout_signaturelist_css', $parent_theme_url );
+				wp_enqueue_style( 'guilro_petitions_signaturelist_css', $parent_theme_url );
 			}
 		}
 	}

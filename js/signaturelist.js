@@ -25,16 +25,16 @@ jQuery( document ).ready( function( $ ) {
 			total  = link[3],
 			status = link[4],
 			ajax   = {
-				action: 'dk_speakout_paginate_signaturelist',
+				action: 'guilro_petitions_paginate_signaturelist',
 				id:         id,
 				start:      start,
 				limit:      limit,
-				dateformat: dk_speakout_signaturelist_js.dateformat
+				dateformat: guilro_petitions_signaturelist_js.dateformat
 			};
 
 		if ( status === '1' ) {
 			// submit data and handle ajax response
-			$.post( dk_speakout_signaturelist_js.ajaxurl, ajax,
+			$.post( guilro_petitions_signaturelist_js.ajaxurl, ajax,
 				function( response ) {
 					var next_link = get_next_link( id, start, limit, total );
 					var prev_link = get_prev_link( id, start, limit, total );

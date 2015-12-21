@@ -3,7 +3,7 @@
 /**
  * Library of common methods for SpeakOut! Email Petitions plugin for WordPress
  */
-class dk_speakout_SpeakOut
+class guilro_petitions_SpeakOut
 {
 	/**
 	 * Gets firstname, lastname and email for logged in users
@@ -114,7 +114,7 @@ class dk_speakout_SpeakOut
 		$pager_html  .= '<form action="" method="post" id="dk-speakout-pager">';
 		$pager_html  .= '<input type="hidden" name="dk-speakout-total-pages" id="dk-speakout-total-pages" value="' . $total_pages . '">';
 		$pager_html  .= '<input type="hidden" name="dk-speakout-page" id="dk-speakout-page" value="' . $page_handle . '">';
-		$pager_html  .= '<span class="displaying-num">' . $count . ' ' . __( 'items', 'dk_speakout' ) . '</span>';
+		$pager_html  .= '<span class="displaying-num">' . $count . ' ' . __( 'items', 'guilro_petitions' ) . '</span>';
 
 		// first page and previous page links
 		if ( $current_page == 1 ) {
@@ -131,7 +131,7 @@ class dk_speakout_SpeakOut
 			$pager_html .= '<span class="paging-input"><input class="current-page" name="dk-speakout-paged" id="dk-speakout-paged" value="' . $current_page . '" size="1" maxlength="4" type="text"> ' . __('of') . ' <span class="total-pages">' . $total_pages . ' </span></span>';
 		}
 		else {
-			$pager_html .= '<span class="paging-input"> ' . $current_page . ' ' . __( 'of', 'dk_speakout' ) . ' <span class="total-pages">' . $total_pages . ' </span></span>';
+			$pager_html .= '<span class="paging-input"> ' . $current_page . ' ' . __( 'of', 'guilro_petitions' ) . ' <span class="total-pages">' . $total_pages . ' </span></span>';
 		}
 
 		// next page and last page links

@@ -139,7 +139,7 @@ body.admin-color-classic .sends_email { background-color: transparent !important
 	border-top-right-radius    : ( @radius - 2px );
 }
 
-.dk_speakout_clear { clear: both; }
+.guilro_petitions_clear { clear: both; }
 .dk-speakout-inline { display: inline; }
 .dk-speakout-red { color: #900; }
 .dk-speakout-green { color: #090; }

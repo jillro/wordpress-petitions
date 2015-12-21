@@ -3,14 +3,14 @@
 // generate CSV file for download
 if ( isset( $_REQUEST['csv'] ) && $_REQUEST['csv'] == 'signatures' ) {
 	// make sure it executes before headers are sent
-	add_action( 'admin_menu', 'dk_speakout_signatures_csv' );
-	function dk_speakout_signatures_csv() {
+	add_action( 'admin_menu', 'guilro_petitions_signatures_csv' );
+	function guilro_petitions_signatures_csv() {
 		// check security: ensure user has authority and intention
-		if ( ! current_user_can( 'publish_posts' ) ) wp_die( __( 'Insufficient privileges: You need to be an editor to do that.', 'dk_speakout' ) );
-		check_admin_referer( 'dk_speakout-download_signatures' );
+		if ( ! current_user_can( 'publish_posts' ) ) wp_die( __( 'Insufficient privileges: You need to be an editor to do that.', 'guilro_petitions' ) );
+		check_admin_referer( 'guilro_petitions-download_signatures' );
 
 		include_once( 'class.signature.php' );
-		$signatures = new dk_speakout_Signature();
+		$signatures = new guilro_petitions_Signature();
 
 		$petition_id = isset( $_REQUEST['pid'] ) ? $_REQUEST['pid'] : ''; // petition id
 
@@ -19,7 +19,7 @@ if ( isset( $_REQUEST['csv'] ) && $_REQUEST['csv'] == 'signatures' ) {
 
 		// display error message if query returns no results
 		if ( count( $csv_data ) < 1 ) {
-			echo '<h1>' . __( "No signatures found.", "dk_speakout" ) . '</h1>';
+			echo '<h1>' . __( "No signatures found.", "guilro_petitions" ) . '</h1>';
 			die();
 		}
 
@@ -40,21 +40,21 @@ if ( isset( $_REQUEST['csv'] ) && $_REQUEST['csv'] == 'signatures' ) {
 		header( 'Pragma: public' ); // supposed to make stuff work over https
 
 		// get the column headers translated
-		$firstname      = __( 'First Name', 'dk_speakout' );
-		$lastname       = __( 'Last Name', 'dk_speakout' );
-		$email          = __( 'Email Address', 'dk_speakout' );
-		$street         = __( 'Street Address', 'dk_speakout' );
-		$city           = __( 'City', 'dk_speakout' );
-		$state          = __( 'State', 'dk_speakout' );
-		$postcode       = __( 'Post Code', 'dk_speakout' );
-		$country        = __( 'Country', 'dk_speakout' );
-		$date           = __( 'Date Signed', 'dk_speakout' );
-		$confirmed      = __( 'Confirmed', 'dk_speakout' );
-		$petition_title = __( 'Petition Title', 'dk_speakout' );
-		$petitions_id   = __( 'Petition ID', 'dk_speakout' );
-		$email_optin    = __( 'Email Opt-in', 'dk_speakout' );
-		$custom_message = __( 'Custom Message', 'dk_speakout' );
-		$language       = __( 'Language', 'dk_speakout' );
+		$firstname      = __( 'First Name', 'guilro_petitions' );
+		$lastname       = __( 'Last Name', 'guilro_petitions' );
+		$email          = __( 'Email Address', 'guilro_petitions' );
+		$street         = __( 'Street Address', 'guilro_petitions' );
+		$city           = __( 'City', 'guilro_petitions' );
+		$state          = __( 'State', 'guilro_petitions' );
+		$postcode       = __( 'Post Code', 'guilro_petitions' );
+		$country        = __( 'Country', 'guilro_petitions' );
+		$date           = __( 'Date Signed', 'guilro_petitions' );
+		$confirmed      = __( 'Confirmed', 'guilro_petitions' );
+		$petition_title = __( 'Petition Title', 'guilro_petitions' );
+		$petitions_id   = __( 'Petition ID', 'guilro_petitions' );
+		$email_optin    = __( 'Email Opt-in', 'guilro_petitions' );
+		$custom_message = __( 'Custom Message', 'guilro_petitions' );
+		$language       = __( 'Language', 'guilro_petitions' );
 
 		// If set, use the custom field label as column header instead of "Custom Field"
 		$counter = 0;
@@ -64,7 +64,7 @@ if ( isset( $_REQUEST['csv'] ) && $_REQUEST['csv'] == 'signatures' ) {
 					$custom_field_label = stripslashes( $label->custom_field_label );
 				}
 				else {
-					$custom_field_label = __( 'Custom Field', 'dk_speakout' );
+					$custom_field_label = __( 'Custom Field', 'guilro_petitions' );
 				}
 			}
 			$counter ++;
@@ -80,10 +80,10 @@ if ( isset( $_REQUEST['csv'] ) && $_REQUEST['csv'] == 'signatures' ) {
 			// convert the 1, 0, or '' values of confirmed to readable format
 			$confirm = $signature->is_confirmed;
 			if ( $confirm == 1 ) {
-				$confirm = __( 'confirmed', 'dk_speakout' );
+				$confirm = __( 'confirmed', 'guilro_petitions' );
 			}
 			elseif ( $confirm == 0 ) {
-				$confirm = __( 'unconfirmed', 'dk_speakout' );
+				$confirm = __( 'unconfirmed', 'guilro_petitions' );
 			}
 			else {
 				$confirm = '...';
@@ -91,10 +91,10 @@ if ( isset( $_REQUEST['csv'] ) && $_REQUEST['csv'] == 'signatures' ) {
 			// convert the 1, 0, or '' values of optin to readable format
 			$optin = $signature->optin;
 			if ( $optin == 1 ) {
-				$optin = __( 'yes', 'dk_speakout' );
+				$optin = __( 'yes', 'guilro_petitions' );
 			}
 			elseif ( $optin == 0 ) {
-				$optin = __( 'no', 'dk_speakout' );
+				$optin = __( 'no', 'guilro_petitions' );
 			}
 			else {
 				$optin = '...';

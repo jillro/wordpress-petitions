@@ -1,15 +1,15 @@
 <?php
 
-function dk_speakout_signatures_page() {
+function guilro_petitions_signatures_page() {
 	// check security: ensure user has authority
-	if ( ! current_user_can( 'publish_posts' ) ) wp_die( __( 'Insufficient privileges: You need to be an editor to do that.', 'dk_speakout' ) );
+	if ( ! current_user_can( 'publish_posts' ) ) wp_die( __( 'Insufficient privileges: You need to be an editor to do that.', 'guilro_petitions' ) );
 
 	include_once( 'class.speakout.php' );
 	include_once( 'class.signature.php' );
 	include_once( 'class.petition.php' );
-	$the_signatures = new dk_speakout_Signature();
-	$the_petitions  = new dk_speakout_Petition();
-	$options        = get_option( 'dk_speakout_options' );
+	$the_signatures = new guilro_petitions_Signature();
+	$the_petitions  = new guilro_petitions_Petition();
+	$options        = get_option( 'guilro_petitions_options' );
 
 	$action = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '';
 	$pid    = isset( $_REQUEST['pid'] ) ? $_REQUEST['pid'] : ''; // petition id
@@ -18,14 +18,14 @@ function dk_speakout_signatures_page() {
 	// set variables for paged record display and for limit values in db query
 	$paged        = isset( $_REQUEST['paged'] ) ? $_REQUEST['paged'] : '1';
 	$total_pages  = isset( $_REQUEST['total_pages'] ) ? $_REQUEST['total_pages'] : '1';
-	$current_page = dk_speakout_SpeakOut::current_paged( $paged, $total_pages );
+	$current_page = guilro_petitions_SpeakOut::current_paged( $paged, $total_pages );
 	$query_limit  = $options['signatures_rows'];
 	$query_start  = ( $current_page * $query_limit ) - $query_limit;
 
 	switch ( $action ) {
 		case 'delete' :
 			// security: ensure user has intention
-			check_admin_referer( 'dk_speakout-delete_signature' . $sid );
+			check_admin_referer( 'guilro_petitions-delete_signature' . $sid );
 
 			// delete signature from the database
 			$the_signatures->delete( $sid );
@@ -45,11 +45,11 @@ function dk_speakout_signatures_page() {
 				$petition = $signatures[0]->title;
 			}
 			else {
-				$petition = __( 'All Signatures', 'dk_speakout' );
+				$petition = __( 'All Signatures', 'guilro_petitions' );
 			}
 			$table_label = esc_html( $petition ) . ' <span class="count">(' . $count . ')</span>';
-			$base_url = site_url( 'wp-admin/admin.php?page=dk_speakout_signatures&action=petition&pid=' . $pid );
-			$message_update = __( 'Signature deleted.', 'dk_speakout' );
+			$base_url = site_url( 'wp-admin/admin.php?page=guilro_petitions_signatures&action=petition&pid=' . $pid );
+			$message_update = __( 'Signature deleted.', 'guilro_petitions' );
 
 		break;
 		case 'petition' :
@@ -66,27 +66,27 @@ function dk_speakout_signatures_page() {
 				$table_label = esc_html( $signatures[0]->title ) . ' <span class="count">(' . $count . ')</span>';
 			}
 			else {
-				$table_label = __( 'Petition', 'dk_speakout' ) . ' ' . $pid . ' <span class="count">(0)</span>';
+				$table_label = __( 'Petition', 'guilro_petitions' ) . ' ' . $pid . ' <span class="count">(0)</span>';
 			}
-			$base_url      = site_url( 'wp-admin/admin.php?page=dk_speakout_signatures&action=petition&pid=' . $pid );
+			$base_url      = site_url( 'wp-admin/admin.php?page=guilro_petitions_signatures&action=petition&pid=' . $pid );
 			$message_update = '';
 		break;
 		case 'reconfirm' :
-			check_admin_referer( 'dk_speakout-resend_confirmations' . $pid );
+			check_admin_referer( 'guilro_petitions-resend_confirmations' . $pid );
 
 			include_once( 'class.mail.php' );
-			$petition_to_confirm = new dk_speakout_Petition();
+			$petition_to_confirm = new guilro_petitions_Petition();
 
 			// get unconfirmed signatures
 			$unconfirmed = $the_signatures->unconfirmed( $pid );
 
 			foreach( $unconfirmed as $signature ) {
-				$unconfirmed_signature = new dk_speakout_signature();
+				$unconfirmed_signature = new guilro_petitions_signature();
 				$unconfirmed_signature->first_name = $signature->first_name;
 				$unconfirmed_signature->last_name = $signature->last_name;
 				$unconfirmed_signature->email = $signature->email;
 				$unconfirmed_signature->confirmation_code = $signature->confirmation_code;
-				dk_speakout_Mail::send_confirmation( $petition_to_confirm, $unconfirmed_signature, $options );
+				guilro_petitions_Mail::send_confirmation( $petition_to_confirm, $unconfirmed_signature, $options );
 
 				// destroy temporary object so we can re-use the variable
 				unset( $unconfirmed_signature );
@@ -103,10 +103,10 @@ function dk_speakout_signatures_page() {
 				$table_label = esc_html( $signatures[0]->title ) . ' <span class="count">(' . $count . ')</span>';
 			}
 			else {
-				$table_label = __( 'Petition', 'dk_speakout' ) . ' ' . $pid . ' <span class="count">(0)</span>';
+				$table_label = __( 'Petition', 'guilro_petitions' ) . ' ' . $pid . ' <span class="count">(0)</span>';
 			}
-			$base_url       = site_url( 'wp-admin/admin.php?page=dk_speakout_signatures&action=petition&pid=' . $pid );
-			$message_update = __( 'Confirmation emails sent.', 'dk_speakout' );
+			$base_url       = site_url( 'wp-admin/admin.php?page=guilro_petitions_signatures&action=petition&pid=' . $pid );
+			$message_update = __( 'Confirmation emails sent.', 'guilro_petitions' );
 		break;
 		default :
 			// count number of signatures in database
@@ -116,8 +116,8 @@ function dk_speakout_signatures_page() {
 			$signatures = $the_signatures->all( $pid, $query_start, $query_limit );
 
 			// set up display strings
-			$table_label = __( 'All Signatures', 'dk_speakout' ) . ' <span class="count">(' . $count . ')</span>';
-			$base_url = site_url( 'wp-admin/admin.php?page=dk_speakout_signatures' );
+			$table_label = __( 'All Signatures', 'guilro_petitions' ) . ' <span class="count">(' . $count . ')</span>';
+			$base_url = site_url( 'wp-admin/admin.php?page=guilro_petitions_signatures' );
 			$message_update = '';
 	}
 
@@ -131,8 +131,8 @@ function dk_speakout_signatures_page() {
 		if ( $pid == '' ) {
 			$pid = $petitions_list[0]->id;
 		}
-		$csv_url = site_url( 'wp-admin/admin.php?page=dk_speakout_signatures&action=petition&pid=' . $pid );
-		$reconfirm_url = site_url( 'wp-admin/admin.php?page=dk_speakout_signatures&action=reconfirm&pid=' . $pid );
+		$csv_url = site_url( 'wp-admin/admin.php?page=guilro_petitions_signatures&action=petition&pid=' . $pid );
+		$reconfirm_url = site_url( 'wp-admin/admin.php?page=guilro_petitions_signatures&action=reconfirm&pid=' . $pid );
 	}
 
 	// display the Signatures table

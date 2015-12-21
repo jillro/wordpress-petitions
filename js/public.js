@@ -71,7 +71,7 @@ jQuery( document ).ready( function( $ ) {
 			$( this ).attr( 'rel', 'disabled' );
 
 			var data = {
-				action:         'dk_speakout_sendmail',
+				action:         'guilro_petitions_sendmail',
 				id:             id,
 				first_name:     firstname,
 				last_name:      lastname,
@@ -91,7 +91,7 @@ jQuery( document ).ready( function( $ ) {
 			ajaxloader.css({ 'visibility' : 'visible'});
 
 			// submit form data and handle ajax response
-			$.post( dk_speakout_js.ajaxurl, data,
+			$.post( guilro_petitions_js.ajaxurl, data,
 				function( response ) {
 					var response_class = 'dk-speakout-response-success';
 					if ( response.status === 'error' ) {

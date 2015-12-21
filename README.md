@@ -1,10 +1,10 @@
-SpeakOut! Email Petitions
+Wordpress Petitions
 =======================
 
 A petition plugin for WordPress
 ___
 
-SpeakOut! Email Petitions allows you to easily create petition forms on your WordPress site.
+Petitions allows you to easily create petition forms on your WordPress site.
 
 Compose a petition message and place the form on any page or post using a shortcode or widget. When the petition form is submitted, a copy of your message will be sent to the email address you selected. Included in the email will be the name and contact information provided by the form submitter. After signing the petition, visitors will have the option of sharing your petition page with their followers on Facebook or Twitter.
 

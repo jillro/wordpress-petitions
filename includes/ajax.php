@@ -3,9 +3,9 @@
 /**
  * Handle public petition form submissions
  */
-add_action( 'wp_ajax_dk_speakout_sendmail', 'dk_speakout_sendmail' );
-add_action( 'wp_ajax_nopriv_dk_speakout_sendmail', 'dk_speakout_sendmail' );
-function dk_speakout_sendmail() {
+add_action( 'wp_ajax_guilro_petitions_sendmail', 'guilro_petitions_sendmail' );
+add_action( 'wp_ajax_nopriv_guilro_petitions_sendmail', 'guilro_petitions_sendmail' );
+function guilro_petitions_sendmail() {
 
 	// set WPML language
 	global $sitepress;
@@ -18,10 +18,10 @@ function dk_speakout_sendmail() {
 	include_once( 'class.petition.php' );
 	include_once( 'class.mail.php' );
 	include_once( 'class.wpml.php' );
-	$the_signature = new dk_speakout_Signature();
-	$the_petition  = new dk_speakout_Petition();
-	$wpml          = new dk_speakout_WPML();
-	$options       = get_option( 'dk_speakout_options' );
+	$the_signature = new guilro_petitions_Signature();
+	$the_petition  = new guilro_petitions_Petition();
+	$wpml          = new guilro_petitions_WPML();
+	$options       = get_option( 'guilro_petitions_options' );
 
 	// clean posted signature fields
 	$the_signature->poppulate_from_post();
@@ -44,11 +44,11 @@ function dk_speakout_sendmail() {
 		if ( $the_petition->requires_confirmation ) {
 			$the_signature->is_confirmed = 0;
 			$the_signature->create_confirmation_code();
-			dk_speakout_Mail::send_confirmation( $the_petition, $the_signature, $options );
+			guilro_petitions_Mail::send_confirmation( $the_petition, $the_signature, $options );
 		}
 		else {
 			if ( $the_petition->sends_email ) {
-				dk_speakout_Mail::send_petition( $the_petition, $the_signature );
+				guilro_petitions_Mail::send_petition( $the_petition, $the_signature );
 			}
 		}
 
@@ -83,11 +83,11 @@ function dk_speakout_sendmail() {
 	die();
 }
 
-add_action( 'wp_ajax_dk_speakout_paginate_signaturelist', 'dk_speakout_paginate_signaturelist' );
-add_action( 'wp_ajax_nopriv_dk_speakout_paginate_signaturelist', 'dk_speakout_paginate_signaturelist' );
-function dk_speakout_paginate_signaturelist() {
+add_action( 'wp_ajax_guilro_petitions_paginate_signaturelist', 'guilro_petitions_paginate_signaturelist' );
+add_action( 'wp_ajax_nopriv_guilro_petitions_paginate_signaturelist', 'guilro_petitions_paginate_signaturelist' );
+function guilro_petitions_paginate_signaturelist() {
 	include_once( 'class.signaturelist.php' );
-	$list = new dk_speakout_Signaturelist();
+	$list = new guilro_petitions_Signaturelist();
 	$table = $list->table( $_POST['id'], $_POST['start'], $_POST['limit'], 'ajax', $_POST['dateformat'] );
 	echo $table;
 	// end AJAX processing

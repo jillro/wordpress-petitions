@@ -2,13 +2,13 @@
 
 // capture confirmation_code variable from links clicked in confirmation emails
 if ( isset( $_REQUEST['dkspeakoutconfirm'] ) ) {
-	add_action( 'template_redirect', 'dk_speakout_confirm_email' );
+	add_action( 'template_redirect', 'guilro_petitions_confirm_email' );
 }
 
 /**
  * Displays the confirmation page
  */
-function dk_speakout_confirm_email() {
+function guilro_petitions_confirm_email() {
 
 	// set WPML language
 	global $sitepress;
@@ -22,9 +22,9 @@ function dk_speakout_confirm_email() {
 	include_once( 'class.petition.php' );
 	include_once( 'class.mail.php' );
 	include_once( 'class.wpml.php' );
-	$the_signature = new dk_speakout_Signature();
-	$the_petition  = new dk_speakout_Petition();
-	$wpml          = new dk_speakout_WPML();
+	$the_signature = new guilro_petitions_Signature();
+	$the_petition  = new guilro_petitions_Petition();
+	$wpml          = new guilro_petitions_WPML();
 
 	// get the confirmation code from url
 	$confirmation_code = $_REQUEST['dkspeakoutconfirm'];
@@ -45,20 +45,20 @@ function dk_speakout_confirm_email() {
 
 		// send the petition email
 		if ( $the_petition->sends_email ) {
-			dk_speakout_Mail::send_petition( $the_petition, $the_signature );
+			guilro_petitions_Mail::send_petition( $the_petition, $the_signature );
 		}
 
 		// set up the status message
-		$message = __( 'Thank you. Your signature has been added to the petition.', 'dk_speakout' );
+		$message = __( 'Thank you. Your signature has been added to the petition.', 'guilro_petitions' );
 	}
 	else {
 		// has the signature already been confirmed?
 		if ( $the_signature->check_confirmation( $confirmation_code ) ) {
-			$message = __( 'Your signature has already been confirmed.', 'dk_speakout' );
+			$message = __( 'Your signature has already been confirmed.', 'guilro_petitions' );
 		}
 		else {
 			// the confirmation code is fubar or an admin has already deleted the signature
-			$message = __( 'The confirmation code you provided is invalid.', 'dk_speakout' );
+			$message = __( 'The confirmation code you provided is invalid.', 'guilro_petitions' );
 		}
 	}
 
@@ -93,9 +93,9 @@ function dk_speakout_confirm_email() {
 		<body>
 			<div id="confirmation">
 				<div id="confirmation-content">
-					<h2>' . __( "Email Confirmation", "dk_speakout" ) . '</h2>
+					<h2>' . __( "Email Confirmation", "guilro_petitions" ) . '</h2>
 					<p>' . $message . '</p>
-					<p>' . __( "You will be redirected momentarily.", "dk_speakout" ) . '</p>
+					<p>' . __( "You will be redirected momentarily.", "guilro_petitions" ) . '</p>
 					<p><a href="' . home_url() . '">' . get_bloginfo( "name" ) . '  &raquo;</a></p>
 				</div>
 			</div>

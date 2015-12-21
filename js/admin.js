@@ -78,7 +78,7 @@ jQuery( document ).ready( function( $ ) {
 	}
 
 	// validate form values before submitting
-	$( '#dk_speakout_submit' ).click( function() {
+	$( '#guilro_petitions_submit' ).click( function() {
 
 		$( '.dk-speakout-error' ).removeClass( 'dk-speakout-error' );
 
@@ -212,7 +212,7 @@ jQuery( document ).ready( function( $ ) {
 	// Select box navigation on Signatures page
 	// to switch between different petitions
 	$('#dk-speakout-switch-petition').change( function() {
-		var page    = 'dk_speakout_signatures',
+		var page    = 'guilro_petitions_signatures',
 			action  = 'petition',
 			pid     = $('#dk-speakout-switch-petition option:selected').val(),
 			baseurl = String( document.location ).split( '?' ),
