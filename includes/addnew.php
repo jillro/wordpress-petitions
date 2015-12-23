@@ -2,101 +2,102 @@
 
 // page used for creating new petitions
 // and for editing existing petitions
-function guilro_petitions_addnew_page() {
-	// check security: ensure user has authority
-	if ( ! current_user_can( 'publish_posts' ) ) wp_die( 'Insufficient privileges: You need to be an editor to do that.' );
+function guilro_petitions_addnew_page()
+{
+    // check security: ensure user has authority
+    if (!current_user_can('publish_posts')) {
+        wp_die('Insufficient privileges: You need to be an editor to do that.');
+    }
 
-	include_once( 'class.petition.php' );
-	include_once( 'class.wpml.php' );
-	$petition     = new guilro_petitions_Petition();
-	$wpml         = new guilro_petitions_WPML();
-	$action       = isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '';
-	$petition->id = isset( $_REQUEST['id'] ) ? absint( $_REQUEST['id'] ) : '';
+    include_once 'class.petition.php';
+    include_once 'class.wpml.php';
+    $petition = new guilro_petitions_Petition();
+    $wpml = new guilro_petitions_WPML();
+    $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
+    $petition->id = isset($_REQUEST['id']) ? absint($_REQUEST['id']) : '';
 
-	switch( $action ) {
-		// add a new petition to database
-		// then display form for editing the new petition
-		case 'create' :
-			// security: ensure user has intention
-			check_admin_referer( 'guilro_petitions-create_petition' );
+    switch ($action) {
+        // add a new petition to database
+        // then display form for editing the new petition
+        case 'create' :
+            // security: ensure user has intention
+            check_admin_referer('guilro_petitions-create_petition');
 
-			$petition->poppulate_from_post();
-			$petition->create();
-			$wpml->register_petition( $petition );
+            $petition->poppulate_from_post();
+            $petition->create();
+            $wpml->register_petition($petition);
 
-			// set up page display variables
-			$page_title  = __( 'Edit Email Petition', 'guilro_petitions' );
-			$nonce       = 'guilro_petitions-update_petition' . $petition->id;
-			$action      = 'update';
-			$x_date      = $petition->get_expiration_date_components();
-			$button_text = __( 'Update Petition', 'guilro_petitions' );
+            // set up page display variables
+            $page_title = __('Edit Email Petition', 'guilro_petitions');
+            $nonce = 'guilro_petitions-update_petition'.$petition->id;
+            $action = 'update';
+            $x_date = $petition->get_expiration_date_components();
+            $button_text = __('Update Petition', 'guilro_petitions');
 
-			// construct update message box content
-			$emailpetition_shortcode = '[emailpetition id="' . $petition->id . '"]';
-			$signaturelist_shortcode = '[signaturelist id="' . $petition->id . '"]';
-			$start_tag               = '<strong>';
-			$end_tag                 = '</strong>';
-			$message_text            = __( 'Petition created. Use %1$s %2$s %3$s to display in a page or post. Use %1$s %4$s %3$s to display the signatures list.', 'guilro_petitions' );
-			$message_update          = sprintf( $message_text, $start_tag, $emailpetition_shortcode, $end_tag, $signaturelist_shortcode );
+            // construct update message box content
+            $emailpetition_shortcode = '[emailpetition id="'.$petition->id.'"]';
+            $signaturelist_shortcode = '[signaturelist id="'.$petition->id.'"]';
+            $start_tag = '<strong>';
+            $end_tag = '</strong>';
+            $message_text = __('Petition created. Use %1$s %2$s %3$s to display in a page or post. Use %1$s %4$s %3$s to display the signatures list.', 'guilro_petitions');
+            $message_update = sprintf($message_text, $start_tag, $emailpetition_shortcode, $end_tag, $signaturelist_shortcode);
 
-			break;
+            break;
 
-		// 'edit' is only called from text links on the Email Petitions page
-		// displays existing petition for alteration and submits with 'update' action
-		case 'edit' :
-			// security: ensure user has intention
-			check_admin_referer( 'guilro_petitions-edit_petition' . $petition->id );
+        // 'edit' is only called from text links on the Email Petitions page
+        // displays existing petition for alteration and submits with 'update' action
+        case 'edit' :
+            // security: ensure user has intention
+            check_admin_referer('guilro_petitions-edit_petition'.$petition->id);
 
-			$petition->retrieve( $petition->id );
+            $petition->retrieve($petition->id);
 
-			// set up page display variables
-			$page_title     = __( 'Edit Email Petition', 'guilro_petitions' );
-			$nonce          = 'guilro_petitions-update_petition' . $petition->id;
-			$action         = 'update';
-			$x_date         = $petition->get_expiration_date_components();
-			$button_text    = __( 'Update Petition', 'guilro_petitions' );
-			$message_update = '';
+            // set up page display variables
+            $page_title = __('Edit Email Petition', 'guilro_petitions');
+            $nonce = 'guilro_petitions-update_petition'.$petition->id;
+            $action = 'update';
+            $x_date = $petition->get_expiration_date_components();
+            $button_text = __('Update Petition', 'guilro_petitions');
+            $message_update = '';
 
-			break;
+            break;
 
-		// alter an existing petition
-		case 'update' :
-			// security: ensure user has intention
-			check_admin_referer( 'guilro_petitions-update_petition' . $petition->id );
+        // alter an existing petition
+        case 'update' :
+            // security: ensure user has intention
+            check_admin_referer('guilro_petitions-update_petition'.$petition->id);
 
-			$petition->poppulate_from_post();
-			$petition->update( $petition->id );
-			$wpml->register_petition( $petition );
+            $petition->poppulate_from_post();
+            $petition->update($petition->id);
+            $wpml->register_petition($petition);
 
-			// set up page display variables
-			$page_title     = __( 'Edit New Email Petition', 'guilro_petitions' );
-			$nonce          = 'guilro_petitions-update_petition' . $petition->id;
-			$action         = 'update';
-			$x_date         = $petition->get_expiration_date_components();
-			$button_text    = __( 'Update Petition', 'guilro_petitions' );
-			$message_update = __( 'Petition updated.' );
+            // set up page display variables
+            $page_title = __('Edit New Email Petition', 'guilro_petitions');
+            $nonce = 'guilro_petitions-update_petition'.$petition->id;
+            $action = 'update';
+            $x_date = $petition->get_expiration_date_components();
+            $button_text = __('Update Petition', 'guilro_petitions');
+            $message_update = __('Petition updated.');
 
-			break;
+            break;
 
-		// show blank form for adding a new petition
-		default :
-			// set up page display variables
-			$page_title     = __( 'Add New Email Petition', 'guilro_petitions' );
-			$nonce          = 'guilro_petitions-create_petition';
-			$action         = 'create';
-			$x_date         = $petition->get_expiration_date_components();
-			$button_text    = __( 'Create Petition', 'guilro_petitions' );
-			$message_update = '';
-			$petition->optin_label = __( 'Add me to your mailing list', 'guilro_petitions' );
-	}
+        // show blank form for adding a new petition
+        default :
+            // set up page display variables
+            $page_title = __('Add New Email Petition', 'guilro_petitions');
+            $nonce = 'guilro_petitions-create_petition';
+            $action = 'create';
+            $x_date = $petition->get_expiration_date_components();
+            $button_text = __('Create Petition', 'guilro_petitions');
+            $message_update = '';
+            $petition->optin_label = __('Add me to your mailing list', 'guilro_petitions');
+    }
 
-	if ( $petition->return_url == '' ) {
-		$petition->return_url = home_url();
-		error_log($petition->return_url);
-	}
+    if ($petition->return_url == '') {
+        $petition->return_url = home_url();
+        error_log($petition->return_url);
+    }
 
-	// display the form
-	include_once( 'addnew.view.php' );
+    // display the form
+    include_once 'addnew.view.php';
 }
-
-?>
