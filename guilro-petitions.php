@@ -12,10 +12,11 @@ Text Domain: guilro-petitions
 Domain Path: /languages
 */
 
-global $wpdb, $db_petitions, $db_signatures, $guilro_petitions_version;
-$db_petitions = $wpdb->prefix.'guilro_petitions_petitions';
-$db_signatures = $wpdb->prefix.'guilro_petitions_signatures';
+global $wpdb, $guilro_petitions_db_petitions, $guilro_petitions_db_signatures, $guilro_petitions_version;
+$guilro_petitions_db_petitions = $wpdb->prefix.'guilro_petitions_petitions';
+$guilro_petitions_db_signatures = $wpdb->prefix.'guilro_petitions_signatures';
 $guilro_petitions_version = '0.1.0';
+$guilro_petitions_db_version = '1';
 
 // enable localizations
 add_action('init', 'guilro_petitions_translate');
@@ -41,6 +42,7 @@ if (is_admin()) {
 
     // enable plugin activation
     register_activation_hook(__FILE__, 'guilro_petitions_install');
+    add_action('plugins_loaded', 'guilro_petitions_maybe_update');
 }
 // public pages
 else {
@@ -63,8 +65,7 @@ function guilro_petitions_meta_links($links, $file)
         return array_merge(
             $links,
             array(
-                sprintf('<a href="http://wordpress.org/tags/speakout-email-petitions?forum_id=10">%s</a>', __('Support', 'guilro_petitions')),
-                sprintf('<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=4PPYZ8K2KLXUJ">%s</a>', __('Donate', 'guilro_petitions')),
+                sprintf('<a href="https://www.paypal.me/guilro">%s</a>', __('Donate', 'guilro_petitions')),
             )
         );
     }

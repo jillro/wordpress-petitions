@@ -36,12 +36,12 @@ class guilro_petitions_Signature
      */
     public function all($petition_id, $start = 0, $limit = 0, $context = '')
     {
-        global $wpdb, $db_petitions, $db_signatures;
+        global $wpdb, $guilro_petitions_db_petitions, $guilro_petitions_db_signatures;
 
         // restrict query results to signatures from a single petition?
         $sql_petition_filter = '';
         if ($petition_id) {
-            $sql_petition_filter = "AND $db_signatures.petitions_id = '$petition_id'";
+            $sql_petition_filter = "AND $guilro_petitions_db_signatures.petitions_id = '$petition_id'";
         }
 
         // limit query results returned if $limit filter is provided
@@ -56,23 +56,23 @@ class guilro_petitions_Signature
             $options = get_option('guilro_petitions_options');
 
             if ($options['csv_signatures'] == 'single_optin') {
-                $sql_context_filter = "AND $db_signatures.optin = '1'";
+                $sql_context_filter = "AND $guilro_petitions_db_signatures.optin = '1'";
             } elseif ($options['csv_signatures'] == 'double_optin') {
-                $sql_context_filter = "AND $db_signatures.optin = '1' AND $db_signatures.is_confirmed = '1'";
+                $sql_context_filter = "AND $guilro_petitions_db_signatures.optin = '1' AND $guilro_petitions_db_signatures.is_confirmed = '1'";
             }
         }
         // exclude unconfirmed signatures
         elseif ($context == 'signaturelist') {
-            $sql_context_filter = "AND ( $db_signatures.is_confirmed = '' OR $db_signatures.is_confirmed = '1' )";
+            $sql_context_filter = "AND ( $guilro_petitions_db_signatures.is_confirmed = '' OR $guilro_petitions_db_signatures.is_confirmed = '1' )";
         }
 
         $sql = "
-			SELECT $db_signatures.*, $db_petitions.title, $db_petitions.custom_field_label
-			FROM `$db_signatures`, `$db_petitions`
-			WHERE $db_signatures.petitions_id = $db_petitions.id
+			SELECT $guilro_petitions_db_signatures.*, $guilro_petitions_db_petitions.title, $guilro_petitions_db_petitions.custom_field_label
+			FROM `$guilro_petitions_db_signatures`, `$guilro_petitions_db_petitions`
+			WHERE $guilro_petitions_db_signatures.petitions_id = $guilro_petitions_db_petitions.id
 			$sql_petition_filter
 			$sql_context_filter
-			ORDER BY $db_signatures.id DESC $sql_limit
+			ORDER BY $guilro_petitions_db_signatures.id DESC $sql_limit
 		";
         $query_results = $wpdb->get_results($sql);
 
@@ -88,11 +88,11 @@ class guilro_petitions_Signature
      */
     public function check_confirmation($confirmation_code)
     {
-        global $wpdb, $db_signatures;
+        global $wpdb, $guilro_petitions_db_signatures;
 
         $sql = "
 			SELECT id
-			FROM $db_signatures
+			FROM $guilro_petitions_db_signatures
 			WHERE `confirmation_code` = '$confirmation_code' AND `is_confirmed` = '1'
 		";
         $query_results = $wpdb->get_row($sql);
@@ -113,12 +113,12 @@ class guilro_petitions_Signature
      */
     public function confirm($confirmation_code)
     {
-        global $wpdb, $db_signatures;
+        global $wpdb, $guilro_petitions_db_signatures;
 
         $data = array('is_confirmed' => 1);
         $where = array('confirmation_code' => $confirmation_code);
 
-        $rows_affected = $wpdb->update($db_signatures, $data, $where);
+        $rows_affected = $wpdb->update($guilro_petitions_db_signatures, $data, $where);
 
         if ($rows_affected > 0) {
             return true;
@@ -136,7 +136,7 @@ class guilro_petitions_Signature
      */
     public function count($petition_id, $context = '')
     {
-        global $wpdb, $db_signatures;
+        global $wpdb, $guilro_petitions_db_signatures;
 
         // count number of signatures in db
         // add WHERE clause if counting signatures from a single petition
@@ -148,12 +148,12 @@ class guilro_petitions_Signature
         // exclude unconfirmed signatures
         $sql_context_filter = '';
         if ($context == 'signaturelist') {
-            $sql_context_filter = "AND ( $db_signatures.is_confirmed = '' OR $db_signatures.is_confirmed = '1' )";
+            $sql_context_filter = "AND ( $guilro_petitions_db_signatures.is_confirmed = '' OR $guilro_petitions_db_signatures.is_confirmed = '1' )";
         }
 
         $sql = "
 			SELECT `id`
-			FROM `$db_signatures`
+			FROM `$guilro_petitions_db_signatures`
 			$sql_where
 			$sql_context_filter
 		";
@@ -169,7 +169,7 @@ class guilro_petitions_Signature
      */
     public function create($petition_id)
     {
-        global $wpdb, $db_signatures;
+        global $wpdb, $guilro_petitions_db_signatures;
 
         $data = array(
             'petitions_id' => $petition_id,
@@ -192,7 +192,7 @@ class guilro_petitions_Signature
 
         $format = array('%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s');
 
-        $wpdb->insert($db_signatures, $data, $format);
+        $wpdb->insert($guilro_petitions_db_signatures, $data, $format);
 
         // grab the id of the record we just added to the database
         $this->id = $wpdb->insert_id;
@@ -213,10 +213,10 @@ class guilro_petitions_Signature
      */
     public function delete($signature_id)
     {
-        global $wpdb, $db_signatures;
+        global $wpdb, $guilro_petitions_db_signatures;
 
         $sql = "
-			DELETE FROM `$db_signatures`
+			DELETE FROM `$guilro_petitions_db_signatures`
 			WHERE `id` = %d
 		";
         $wpdb->query($wpdb->prepare($sql, $signature_id));
@@ -232,11 +232,11 @@ class guilro_petitions_Signature
      */
     public function has_unique_email($email, $petition_id)
     {
-        global $wpdb, $db_signatures;
+        global $wpdb, $guilro_petitions_db_signatures;
 
         $sql = "
 			SELECT `id`
-			FROM $db_signatures
+			FROM $guilro_petitions_db_signatures
 			WHERE `email` = %s AND `petitions_id` = %d
 		";
         $query_results = $wpdb->get_row($wpdb->prepare($sql, $email, $petition_id));
@@ -295,11 +295,11 @@ class guilro_petitions_Signature
      */
     public function retrieve($signature_id)
     {
-        global $wpdb, $db_signatures;
+        global $wpdb, $guilro_petitions_db_signatures;
 
         $sql = "
 			SELECT *
-			FROM `$db_signatures`
+			FROM `$guilro_petitions_db_signatures`
 			WHERE `id` = %d
 		";
         $query_results = $wpdb->get_row($wpdb->prepare($sql, $signature_id));
@@ -315,11 +315,11 @@ class guilro_petitions_Signature
      */
     public function retrieve_confirmed($confirmation_code)
     {
-        global $wpdb, $db_signatures;
+        global $wpdb, $guilro_petitions_db_signatures;
 
         $sql = "
 			SELECT *
-			FROM $db_signatures
+			FROM $guilro_petitions_db_signatures
 			WHERE `confirmation_code` = '%s' AND `is_confirmed` = '1'
 		";
         $query_results = $wpdb->get_row($wpdb->prepare($sql, $confirmation_code));
@@ -337,11 +337,11 @@ class guilro_petitions_Signature
      */
     public function unconfirmed($petition_id)
     {
-        global $wpdb, $db_signatures;
+        global $wpdb, $guilro_petitions_db_signatures;
 
         $sql = "
 			SELECT `id`, `first_name`, `last_name`, `email`, `confirmation_code`
-			FROM $db_signatures
+			FROM $guilro_petitions_db_signatures
 			WHERE `petitions_id` = '%d' AND `is_confirmed` = '0'
 		";
         $query_results = $wpdb->get_results($wpdb->prepare($sql, $petition_id));

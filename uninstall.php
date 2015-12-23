@@ -13,14 +13,14 @@ delete_option('guilro_petitions_version');
 
 // set variables for accessing database
 global $wpdb;
-$db_petitions = $wpdb->prefix.'guilro_petitions_petitions';
-$db_signatures = $wpdb->prefix.'guilro_petitions_signatures';
+$guilro_petitions_db_petitions = $wpdb->prefix.'guilro_petitions_petitions';
+$guilro_petitions_db_signatures = $wpdb->prefix.'guilro_petitions_signatures';
 $db_options = $wpdb->prefix.'options';
 
 // delete any remaining transients
 
 // get ids for all existing petitions
-$sql_petition_ids = "SELECT id FROM $db_petitions";
+$sql_petition_ids = "SELECT id FROM $guilro_petitions_db_petitions";
 $petitions = $wpdb->get_results($sql_petition_ids);
 
 // loop through petitions and delete associated transients
@@ -41,10 +41,10 @@ $sql_widget = "DELETE FROM $db_options WHERE option_name = 'widget_guilro_petiti
 $wpdb->query($sql_widget);
 
 // delete custom database tables
-$sql_petitions_table = "DROP TABLE $db_petitions";
+$sql_petitions_table = "DROP TABLE $guilro_petitions_db_petitions";
 $wpdb->query($sql_petitions_table);
 
-$sql_signatures_table = "DROP TABLE $db_signatures";
+$sql_signatures_table = "DROP TABLE $guilro_petitions_db_signatures";
 $wpdb->query($sql_signatures_table);
 
 // delete WPML strings

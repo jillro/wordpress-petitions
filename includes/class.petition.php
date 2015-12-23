@@ -37,17 +37,17 @@ class guilro_petitions_Petition
      */
     public function all($start, $limit)
     {
-        global $wpdb, $db_petitions, $db_signatures;
+        global $wpdb, $guilro_petitions_db_petitions, $guilro_petitions_db_signatures;
 
         // query petitions and number of signatures for each
         $sql = "
-			SELECT $db_petitions.id, $db_petitions.title, $db_petitions.goal,
-				COUNT( $db_signatures.id ) AS 'signatures'
-			FROM $db_petitions
-			LEFT JOIN $db_signatures
-				ON $db_petitions.id = $db_signatures.petitions_id
-				AND ( $db_signatures.is_confirmed = '' OR $db_signatures.is_confirmed = '1' )
-			GROUP BY $db_petitions.id
+			SELECT $guilro_petitions_db_petitions.id, $guilro_petitions_db_petitions.title, $guilro_petitions_db_petitions.goal,
+				COUNT( $guilro_petitions_db_signatures.id ) AS 'signatures'
+			FROM $guilro_petitions_db_petitions
+			LEFT JOIN $guilro_petitions_db_signatures
+				ON $guilro_petitions_db_petitions.id = $guilro_petitions_db_signatures.petitions_id
+				AND ( $guilro_petitions_db_signatures.is_confirmed = '' OR $guilro_petitions_db_signatures.is_confirmed = '1' )
+			GROUP BY $guilro_petitions_db_petitions.id
 			ORDER BY `id` DESC
 			LIMIT $start, $limit
 		";
@@ -63,11 +63,11 @@ class guilro_petitions_Petition
      */
     public function count()
     {
-        global $wpdb, $db_petitions;
+        global $wpdb, $guilro_petitions_db_petitions;
 
         $sql = "
 			SELECT `id`
-			FROM `$db_petitions`
+			FROM `$guilro_petitions_db_petitions`
 		";
         $query_results = $wpdb->get_results($sql);
 
@@ -79,7 +79,7 @@ class guilro_petitions_Petition
      */
     public function create()
     {
-        global $wpdb, $db_petitions;
+        global $wpdb, $guilro_petitions_db_petitions;
 
         $data = array(
             'title' => $this->title,
@@ -105,7 +105,7 @@ class guilro_petitions_Petition
 
         $format = array('%s', '%s', '%s', '%s', '%s', '%s', '%d', '%s', '%s', '%d', '%d', '%s', '%d', '%d', '%s', '%d', '%s', '%d');
 
-        $wpdb->insert($db_petitions, $data, $format);
+        $wpdb->insert($guilro_petitions_db_petitions, $data, $format);
 
         // grab the id of the record we just added to the database
         $this->id = $wpdb->insert_id;
@@ -118,18 +118,18 @@ class guilro_petitions_Petition
      */
     public function delete($id)
     {
-        global $wpdb, $db_petitions, $db_signatures;
+        global $wpdb, $guilro_petitions_db_petitions, $guilro_petitions_db_signatures;
 
         // delete petition from the db
         $sql_petitions = "
-			DELETE FROM `$db_petitions`
+			DELETE FROM `$guilro_petitions_db_petitions`
 			WHERE `id` = '%d'
 		";
         $wpdb->query($wpdb->prepare($sql_petitions, $id));
 
         // delete petition's signatures from the db
         $sql_signatures = "
-			DELETE FROM `$db_signatures`
+			DELETE FROM `$guilro_petitions_db_signatures`
 			WHERE `petitions_id` = '%d'
 		";
         $wpdb->query($wpdb->prepare($sql_signatures, $id));
@@ -268,11 +268,11 @@ class guilro_petitions_Petition
      */
     public function quicklist()
     {
-        global $wpdb, $db_petitions;
+        global $wpdb, $guilro_petitions_db_petitions;
 
         $sql = "
 			SELECT id, title
-			FROM `$db_petitions`
+			FROM `$guilro_petitions_db_petitions`
 		";
         $query_results = $wpdb->get_results($sql);
 
@@ -288,16 +288,16 @@ class guilro_petitions_Petition
      */
     public function retrieve($id)
     {
-        global $wpdb, $db_petitions, $db_signatures;
+        global $wpdb, $guilro_petitions_db_petitions, $guilro_petitions_db_signatures;
 
         $sql = "
-			SELECT $db_petitions.*, COUNT( $db_signatures.id ) AS 'signatures'
-			FROM $db_petitions
-			LEFT JOIN $db_signatures
-				ON $db_petitions.id = $db_signatures.petitions_id
-				AND ( $db_signatures.is_confirmed != '0' )
-			WHERE $db_petitions.id = %d
-			GROUP BY $db_petitions.id
+			SELECT $guilro_petitions_db_petitions.*, COUNT( $guilro_petitions_db_signatures.id ) AS 'signatures'
+			FROM $guilro_petitions_db_petitions
+			LEFT JOIN $guilro_petitions_db_signatures
+				ON $guilro_petitions_db_petitions.id = $guilro_petitions_db_signatures.petitions_id
+				AND ( $guilro_petitions_db_signatures.is_confirmed != '0' )
+			WHERE $guilro_petitions_db_petitions.id = %d
+			GROUP BY $guilro_petitions_db_petitions.id
 		";
         $petition = $wpdb->get_row($wpdb->prepare($sql, $id));
 
@@ -317,7 +317,7 @@ class guilro_petitions_Petition
      */
     public function update($id)
     {
-        global $wpdb, $db_petitions;
+        global $wpdb, $guilro_petitions_db_petitions;
 
         $data = array(
              'title' => $this->title,
@@ -341,7 +341,7 @@ class guilro_petitions_Petition
         );
         $where = array('id' => $id);
 
-        $wpdb->update($db_petitions, $data, $where);
+        $wpdb->update($guilro_petitions_db_petitions, $data, $where);
     }
 
     //********************************************************************************
