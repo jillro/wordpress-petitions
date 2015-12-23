@@ -26,17 +26,17 @@ function guilro_petitions_translate()
 
 // load admin functions only on admin pages
 if (is_admin()) {
-    include_once dirname(__FILE__).'/includes/install.php';
-    include_once dirname(__FILE__).'/includes/admin.php';
-    include_once dirname(__FILE__).'/includes/petitions.php';
-    include_once dirname(__FILE__).'/includes/addnew.php';
-    include_once dirname(__FILE__).'/includes/signatures.php';
-    include_once dirname(__FILE__).'/includes/settings.php';
-    include_once dirname(__FILE__).'/includes/csv.php';
-    include_once dirname(__FILE__).'/includes/ajax.php';
+    include_once __DIR__.'/includes/install.php';
+    include_once __DIR__.'/includes/admin.php';
+    include_once __DIR__.'/includes/petitions.php';
+    include_once __DIR__.'/includes/addnew.php';
+    include_once __DIR__.'/includes/signatures.php';
+    include_once __DIR__.'/includes/settings.php';
+    include_once __DIR__.'/includes/csv.php';
+    include_once __DIR__.'/includes/ajax.php';
 
     if (version_compare(get_bloginfo('version'), '3.3', '>') == 1) {
-        include_once dirname(__FILE__).'/includes/help.php';
+        include_once __DIR__.'/includes/help.php';
     }
 
     // enable plugin activation
@@ -44,13 +44,13 @@ if (is_admin()) {
 }
 // public pages
 else {
-    include_once dirname(__FILE__).'/includes/emailpetition.php';
-    include_once dirname(__FILE__).'/includes/signaturelist.php';
-    include_once dirname(__FILE__).'/includes/confirmations.php';
+    include_once __DIR__.'/includes/emailpetition.php';
+    include_once __DIR__.'/includes/signaturelist.php';
+    include_once __DIR__.'/includes/confirmations.php';
 }
 
 // load the widget (admin and public)
-include_once dirname(__FILE__).'/includes/widget.php';
+include_once __DIR__.'/includes/widget.php';
 
 // add Support and Donate links to the Plugins page
 add_filter('plugin_row_meta', 'guilro_petitions_meta_links', 10, 2);

@@ -135,5 +135,5 @@ function guilro_petitions_signatures_page()
     }
 
     // display the Signatures table
-    include_once dirname(__FILE__).'/signatures.view.php';
+    include_once __DIR__.'/signatures.view.php';
 }

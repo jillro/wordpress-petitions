@@ -44,5 +44,5 @@ function guilro_petitions_settings_page()
 
     $nonce = 'guilro_petitions-update_settings';
     $action = 'update';
-    include_once dirname(__FILE__).'/settings.view.php';
+    include_once __DIR__.'/settings.view.php';
 }
