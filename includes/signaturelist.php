@@ -35,7 +35,7 @@ function guilro_petitions_signatures_shortcode($attr)
         'ajaxurl' => admin_url('admin-ajax.php', $protocol),
         'dateformat' => $dateformat,
     );
-    wp_enqueue_script('guilro_petitions_signaturelist_js', plugins_url('speakout/js/signaturelist.js'), array('jquery'));
+    wp_enqueue_script('guilro_petitions_signaturelist_js', plugins_url('guilro-petitions/js/signaturelist.js'), array('jquery'));
     wp_localize_script('guilro_petitions_signaturelist_js', 'guilro_petitions_signaturelist_js', $params);
 
     $table_html = guilro_petitions_Signaturelist::table($id, 0, $rows, 'shortcode', $dateformat, $nextbuttontext, $prevbuttontext);
@@ -72,7 +72,7 @@ function guilro_petitions_signaturelist_css($posts)
 
          // load default theme
         if ($theme === 'default') {
-            wp_enqueue_style('guilro_petitions_signaturelist_css', plugins_url('speakout/css/signaturelist.css'));
+            wp_enqueue_style('guilro_petitions_signaturelist_css', plugins_url('guilro-petitions/css/signaturelist.css'));
         }
         // attempt to load cusom theme (petition-signaturelist.css)
         else {

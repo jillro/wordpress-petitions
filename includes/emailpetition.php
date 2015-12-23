@@ -252,10 +252,10 @@ function guilro_petitions_public_css_js($posts)
 
         switch ($theme) {
             case 'default' :
-                wp_enqueue_style('guilro_petitions_css', plugins_url('speakout/css/theme-default.css'));
+                wp_enqueue_style('guilro_petitions_css', plugins_url('guilro-petitions/css/theme-default.css'));
                 break;
             case 'basic' :
-                wp_enqueue_style('guilro_petitions_css', plugins_url('speakout/css/theme-basic.css'));
+                wp_enqueue_style('guilro_petitions_css', plugins_url('guilro-petitions/css/theme-basic.css'));
                 break;
             case 'none' :
                 $parent_dir = get_template_directory_uri();
@@ -287,7 +287,7 @@ function guilro_petitions_public_css_js($posts)
         // ensure ajax callback url works on both https and http
         $protocol = isset($_SERVER['HTTPS']) ? 'https://' : 'http://';
         $params = array('ajaxurl' => admin_url('admin-ajax.php', $protocol));
-        wp_enqueue_script('guilro_petitions_js', plugins_url('speakout/js/public.js'), array('jquery'));
+        wp_enqueue_script('guilro_petitions_js', plugins_url('guilro-petitions/js/public.js'), array('jquery'));
         wp_localize_script('guilro_petitions_js', 'guilro_petitions_js', $params);
     }
 

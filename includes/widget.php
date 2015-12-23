@@ -21,7 +21,7 @@ class guilro_petitions_petition_widget extends WP_Widget
         if (!is_admin() && is_active_widget(false, false, $this->id_base, true)) {
 
             // load the JavaScript
-            wp_enqueue_script('guilro_petitions_widget_js', plugins_url('speakout/js/widget.js'), array('jquery'));
+            wp_enqueue_script('guilro_petitions_widget_js', plugins_url('guilro-petitions/js/widget.js'), array('jquery'));
 
             // load the CSS theme
             $options = get_option('guilro_petitions_options');
@@ -29,7 +29,7 @@ class guilro_petitions_petition_widget extends WP_Widget
 
              // load default theme
             if ($theme === 'default') {
-                wp_enqueue_style('guilro_petitions_widget_css', plugins_url('speakout/css/widget.css'));
+                wp_enqueue_style('guilro_petitions_widget_css', plugins_url('guilro-petitions/css/widget.css'));
             }
             // attempt to load cusom theme (petition-widget.css)
             else {

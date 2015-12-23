@@ -11,7 +11,7 @@ function guilro_petitions_create_menus()
         'capability' => 'publish_posts',
         'menu_slug' => 'guilro_petitions',
         'function' => 'guilro_petitions_petitions_page',
-        'icon_url' => plugins_url('speakout/images/blank.png'),
+        'icon_url' => plugins_url('guilro-petitions/images/blank.png'),
     );
     $petitions_page = add_menu_page($petitions['page_title'], $petitions['menu_title'], $petitions['capability'], $petitions['menu_slug'], $petitions['function'], $petitions['icon_url']);
 
@@ -59,10 +59,10 @@ function guilro_petitions_menu_icon()
     echo '
 		<style type="text/css">
 			#toplevel_page_guilro_petitions .wp-menu-image {
-				background: url('.plugins_url('speakout/images/icon-emailpetitions-16.png').') no-repeat 6px 7px !important;
+				background: url('.plugins_url('guilro-petitions/images/icon-emailpetitions-16.png').') no-repeat 6px 7px !important;
 			}
 			body.admin-color-classic #toplevel_page_guilro_petitions .wp-menu-image {
-				background: url('.plugins_url('speakout/images/icon-emailpetitions-16.png').') no-repeat 6px -41px !important;
+				background: url('.plugins_url('guilro-petitions/images/icon-emailpetitions-16.png').') no-repeat 6px -41px !important;
 			}
 			#toplevel_page_guilro_petitions:hover .wp-menu-image, #toplevel_page_guilro_petitions.wp-has-current-submenu .wp-menu-image {
 				background-position: 6px -17px !important;
@@ -82,7 +82,7 @@ function guilro_petitions_admin_js()
     global $parent_file;
 
     if ($parent_file == 'guilro_petitions') {
-        wp_enqueue_script('guilro_petitions_admin_js', plugins_url('speakout/js/admin.js'), array('jquery'));
+        wp_enqueue_script('guilro_petitions_admin_js', plugins_url('guilro-petitions/js/admin.js'), array('jquery'));
         wp_enqueue_script('post', admin_url('js/post.js'), 'jquery');
     }
 }
@@ -94,6 +94,6 @@ function guilro_petitions_admin_css()
     global $parent_file;
 
     if ($parent_file == 'guilro_petitions') {
-        wp_enqueue_style('guilro_petitions_admin_css', plugins_url('speakout/css/admin.css'));
+        wp_enqueue_style('guilro_petitions_admin_css', plugins_url('guilro-petitions/css/admin.css'));
     }
 }
