@@ -10,9 +10,6 @@ Compose a petition message and place the form on any page or post using a shortc
 
 Signatures are stored in the WordPress database and can be easily exported to CSV format for further analysis. You may set a goal for the number of signatures you hope to collect and then watch as a progress bar tracks your petition's advance toward its goal. Petitions may also be configured to stop accepting new signatures on a specified date.
 
-Stable releases of this plugin can also be found in the [WordPress Plugin Repository] (http://wordpress.org/extend/plugins/speakout-email-petitions/).
-
-
 Shortcodes
 ---------------------
 
