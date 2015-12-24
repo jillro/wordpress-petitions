@@ -9,13 +9,13 @@ function guilro_petitions_register_widgets()
 
 class guilro_petitions_petition_widget extends WP_Widget
 {
-    public function guilro_petitions_petition_widget()
+    public function __construct()
     {
         $widget_ops = array(
             'classname' => 'guilro_petitions_widget',
             'description' => __('Display a petition form.', 'guilro_petitions'),
         );
-        $this->WP_Widget('guilro_petitions_petition_widget', 'SpeakOut! Email Petitions', $widget_ops);
+        parent::__construct('guilro_petitions_petition_widget', 'Petitions', $widget_ops);
 
         // load widget scripts
         if (!is_admin() && is_active_widget(false, false, $this->id_base, true)) {
