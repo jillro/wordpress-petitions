@@ -33,32 +33,42 @@ class guilro_petitions_Settings
     public $sig_date = 0;
 
     /**
+     * Get all Options.
+     *
+     * @return array
+     */
+    public function getAll()
+    {
+        $this->retrieve();
+
+        return get_object_vars($this);
+    }
+
+    /**
      * Retrieves the plugin options and poppulates this object.
      */
     public function retrieve()
     {
-        $options = get_option('guilro_petitions_options');
-
-        $this->petitions_rows = $options['petitions_rows'];
-        $this->signatures_rows = $options['signatures_rows'];
-        $this->petition_theme = $options['petition_theme'];
-        $this->widget_theme = $options['widget_theme'];
-        $this->button_text = $options['button_text'];
-        $this->expiration_message = $options['expiration_message'];
-        $this->success_message = $options['success_message'];
-        $this->already_signed_message = $options['already_signed_message'];
-        $this->share_message = $options['share_message'];
-        $this->confirm_subject = $options['confirm_subject'];
-        $this->confirm_message = $options['confirm_message'];
-        $this->confirm_email = $options['confirm_email'];
-        $this->optin_default = $options['optin_default'];
-        $this->display_count = $options['display_count'];
-        $this->csv_signatures = $options['csv_signatures'];
-        $this->signaturelist_theme = $options['signaturelist_theme'];
-        $this->signaturelist_header = $options['signaturelist_header'];
-        $this->signaturelist_rows = $options['signaturelist_rows'];
-        $this->signaturelist_privacy = $options['signaturelist_privacy'];
-        $this->signaturelist_columns = $options['signaturelist_columns'];
+        $this->petitions_rows = get_option('guilro_petitions_petitions_rows');
+        $this->signatures_rows = get_option('guilro_petitions_signatures_rows');
+        $this->petition_theme = get_option('guilro_petitions_petition_theme');
+        $this->widget_theme = get_option('guilro_petitions_widget_theme');
+        $this->button_text = get_option('guilro_petitions_button_text');
+        $this->expiration_message = get_option('guilro_petitions_expiration_message');
+        $this->success_message = get_option('guilro_petitions_success_message');
+        $this->already_signed_message = get_option('guilro_petitions_already_signed_message');
+        $this->share_message = get_option('guilro_petitions_share_message');
+        $this->confirm_subject = get_option('guilro_petitions_confirm_subject');
+        $this->confirm_message = get_option('guilro_petitions_confirm_message');
+        $this->confirm_email = get_option('guilro_petitions_confirm_email');
+        $this->optin_default = get_option('guilro_petitions_optin_default');
+        $this->display_count = get_option('guilro_petitions_display_count');
+        $this->csv_signatures = get_option('guilro_petitions_csv_signatures');
+        $this->signaturelist_theme = get_option('guilro_petitions_signaturelist_theme');
+        $this->signaturelist_header = get_option('guilro_petitions_signaturelist_header');
+        $this->signaturelist_rows = get_option('guilro_petitions_signaturelist_rows');
+        $this->signaturelist_privacy = get_option('guilro_petitions_signaturelist_privacy');
+        $this->signaturelist_columns = get_option('guilro_petitions_signaturelist_columns');
 
         $this->_read_signaturelist_columns();
     }
@@ -70,30 +80,26 @@ class guilro_petitions_Settings
     {
         $this->_clean_post_data();
 
-        $options = array(
-            'petitions_rows' => $this->petitions_rows,
-            'signatures_rows' => $this->signatures_rows,
-            'petition_theme' => $this->petition_theme,
-            'widget_theme' => $this->widget_theme,
-            'button_text' => $this->button_text,
-            'expiration_message' => $this->expiration_message,
-            'success_message' => $this->success_message,
-            'already_signed_message' => $this->already_signed_message,
-            'share_message' => $this->share_message,
-            'confirm_subject' => $this->confirm_subject,
-            'confirm_message' => $this->confirm_message,
-            'confirm_email' => $this->confirm_email,
-            'optin_default' => $this->optin_default,
-            'display_count' => $this->display_count,
-            'csv_signatures' => $this->csv_signatures,
-            'signaturelist_theme' => $this->signaturelist_theme,
-            'signaturelist_header' => $this->signaturelist_header,
-            'signaturelist_rows' => $this->signaturelist_rows,
-            'signaturelist_columns' => $this->signaturelist_columns,
-            'signaturelist_privacy' => $this->signaturelist_privacy,
-        );
-
-        update_option('guilro_petitions_options', $options);
+        update_option('guilro_petitions_petitions_rows', $this->petitions_rows);
+        update_option('guilro_petitions_signatures_rows', $this->signatures_rows);
+        update_option('guilro_petitions_petition_theme', $this->petition_theme);
+        update_option('guilro_petitions_widget_theme', $this->widget_theme);
+        update_option('guilro_petitions_button_text', $this->button_text);
+        update_option('guilro_petitions_expiration_message', $this->expiration_message);
+        update_option('guilro_petitions_success_message', $this->success_message);
+        update_option('guilro_petitions_already_signed_message', $this->already_signed_message);
+        update_option('guilro_petitions_share_message', $this->share_message);
+        update_option('guilro_petitions_confirm_subject', $this->confirm_subject);
+        update_option('guilro_petitions_confirm_message', $this->confirm_message);
+        update_option('guilro_petitions_confirm_email', $this->confirm_email);
+        update_option('guilro_petitions_optin_default', $this->optin_default);
+        update_option('guilro_petitions_display_count', $this->display_count);
+        update_option('guilro_petitions_csv_signatures', $this->csv_signatures);
+        update_option('guilro_petitions_signaturelist_theme', $this->signaturelist_theme);
+        update_option('guilro_petitions_signaturelist_header', $this->signaturelist_header);
+        update_option('guilro_petitions_signaturelist_rows', $this->signaturelist_rows);
+        update_option('guilro_petitions_signaturelist_columns', $this->signaturelist_columns);
+        update_option('guilro_petitions_signaturelist_privacy', $this->signaturelist_privacy);
     }
 
     /**

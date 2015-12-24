@@ -91,7 +91,7 @@ function guilro_petitions_maybe_update()
     $target_db_version = $guilro_petitions_db_version;
 
     while ($current_db_version < $target_db_version) {
-        $current_db_version++;
+        ++$current_db_version;
         $func = 'guilro_petitions_update_routine_'.$current_db_version;
         if (function_exists($func)) {
             call_user_func($func);

@@ -1,5 +1,7 @@
 <?php
 
+global $guilro_petitions_settings;
+
 function guilro_petitions_signatures_page()
 {
     // check security: ensure user has authority
@@ -12,7 +14,7 @@ function guilro_petitions_signatures_page()
     include_once 'class.petition.php';
     $the_signatures = new guilro_petitions_Signature();
     $the_petitions = new guilro_petitions_Petition();
-    $options = get_option('guilro_petitions_options');
+    $options = $guilro_petitions_settings->getAll();
 
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
     $pid = isset($_REQUEST['pid']) ? $_REQUEST['pid'] : ''; // petition id

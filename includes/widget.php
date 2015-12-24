@@ -1,5 +1,7 @@
 <?php
 
+global $guilro_petitions_settings;
+
 // register widget
 add_action('widgets_init', 'guilro_petitions_register_widgets');
 function guilro_petitions_register_widgets()
@@ -24,7 +26,7 @@ class guilro_petitions_petition_widget extends WP_Widget
             wp_enqueue_script('guilro_petitions_widget_js', plugins_url('guilro-petitions/js/widget.js'), array('jquery'));
 
             // load the CSS theme
-            $options = get_option('guilro_petitions_options');
+            $options = $guilro_petitions_settings->getAll();
             $theme = $options['widget_theme'];
 
              // load default theme
@@ -70,7 +72,7 @@ class guilro_petitions_petition_widget extends WP_Widget
     {
         include_once 'class.petition.php';
         $the_petition = new guilro_petitions_Petition();
-        $options = get_option('guilro_petitions_options');
+        $options = $guilro_petitions_settings->getAll();
         $defaults = array('title' => __('Sign the Petition', 'guilro_petitions'), 'call_to_action' => '', 'sharing_url' => '', 'petition_id' => 1);
         $instance = wp_parse_args((array) $instance, $defaults);
         $title = $instance['title'];
@@ -118,7 +120,7 @@ class guilro_petitions_petition_widget extends WP_Widget
         include_once 'class.speakout.php';
         include_once 'class.petition.php';
         include_once 'class.wpml.php';
-        $options = get_option('guilro_petitions_options');
+        $options = $guilro_petitions_settings->getAll();
         $petition = new guilro_petitions_Petition();
         $wpml = new guilro_petitions_WPML();
         extract($args);

@@ -5,6 +5,7 @@
  */
 function guilro_petitions_petitions_page()
 {
+    global $guilro_petitions_settings;
     // check security: ensure user has authority
     if (!current_user_can('publish_posts')) {
         wp_die('Insufficient privileges: You need to be an editor to do that.');
@@ -17,7 +18,7 @@ function guilro_petitions_petitions_page()
     $wpml = new guilro_petitions_WPML();
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
     $id = isset($_REQUEST['id']) ? $_REQUEST['id'] : '';
-    $options = get_option('guilro_petitions_options');
+    $options = $guilro_petitions_settings->getAll();
 
     // set variables for paged record display and limit values in db query
     // request values may be submitted either by html links (pagination.php) or by javascript (admin.js)

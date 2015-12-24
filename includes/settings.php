@@ -1,5 +1,7 @@
 <?php
 
+global $guilro_petitions_settings;
+
 function guilro_petitions_settings_page()
 {
 
@@ -28,8 +30,9 @@ function guilro_petitions_settings_page()
             $the_settings->retrieve();
 
             // attempt to resgister strings for translation in WPML
-            $options = get_option('guilro_petitions_options');
-            $wpml->register_options($options);
+            // TODO FIX WPML and option
+            //$options = $guilro_petitions_settings->getAll();
+            //$wpml->register_options($options);
 
             $message_update = __('Settings updated.', 'guilro_petitions');
 

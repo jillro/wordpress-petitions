@@ -12,7 +12,7 @@ Text Domain: guilro_petitions
 Domain Path: /languages
 */
 
-global $wpdb, $guilro_petitions_db_petitions, $guilro_petitions_db_signatures, $guilro_petitions_version, $guilro_petitions_db_version;
+global $wpdb, $guilro_petitions_db_petitions, $guilro_petitions_db_signatures, $guilro_petitions_version, $guilro_petitions_db_version, $guilro_petitions_settings;
 $guilro_petitions_db_petitions = $wpdb->prefix.'guilro_petitions_petitions';
 $guilro_petitions_db_signatures = $wpdb->prefix.'guilro_petitions_signatures';
 $guilro_petitions_version = '0.1.0';
@@ -50,6 +50,9 @@ else {
     include_once __DIR__.'/includes/signaturelist.php';
     include_once __DIR__.'/includes/confirmations.php';
 }
+
+include_once __DIR__.'/includes/class.settings.php';
+$guilro_petitions_settings = new guilro_petitions_Settings();
 
 // load the widget (admin and public)
 include_once __DIR__.'/includes/widget.php';

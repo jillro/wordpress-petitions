@@ -1,5 +1,7 @@
 <?php
 
+global $guilro_petitions_settings;
+
 /**
  * Class for accessing and manipulating signature data in Guilro Petitions plugin for WordPress.
  */
@@ -26,7 +28,7 @@ class guilro_petitions_Signature
 
     /**
      * Retrieves a selection of signature records from the database.
-     * 
+     *
      * @param $petition_id (int) optional: the id of the petition whose signature should be retrieved
      * @param $start (int) optional: the first record to be retrieved
      * @param $limit (int) optional: the maximum number of records to be retrieved
@@ -53,7 +55,7 @@ class guilro_petitions_Signature
         $sql_context_filter = '';
         // restrict results to either single or double opt-in signatures
         if ($context == 'csv') {
-            $options = get_option('guilro_petitions_options');
+            $options = $guilro_petitions_settings->getAll();
 
             if ($options['csv_signatures'] == 'single_optin') {
                 $sql_context_filter = "AND $guilro_petitions_db_signatures.optin = '1'";
@@ -81,7 +83,7 @@ class guilro_petitions_Signature
 
     /**
      * Checks if a signature has been confirmed by matching a provided confirmation code with one in the database.
-     * 
+     *
      * @param $confirmation_code (string) the confirmation code to check
      *
      * @return (bool) true if match is found, false if no match is found
@@ -106,7 +108,7 @@ class guilro_petitions_Signature
 
     /**
      * Attempts to confirm an email address by matching the confirmation code provided with one in the database.
-     * 
+     *
      * @param $confirmation_code (string) variable sent through link in confirmation email
      *
      * @return (bool) true if confirmation status was updated, false if confirmation code was not found or the signature was already confirmed
@@ -129,7 +131,7 @@ class guilro_petitions_Signature
 
     /**
      * Counts the number of signatures in the database.
-     * 
+     *
      * @param $petition_id (int) optional: unique 'id' of a petition, used to limit results to a single petition
      *
      * @return (int) the number of signatures found in the database
@@ -164,7 +166,7 @@ class guilro_petitions_Signature
 
     /**
      * Creates a new signature record in the database.
-     * 
+     *
      * @param $petition_id (int) the unique id of the petition we are signing
      */
     public function create($petition_id)
@@ -208,7 +210,7 @@ class guilro_petitions_Signature
 
     /**
      * Deletes a signature from the database.
-     * 
+     *
      * @param int $signature_id value of the signature's 'id' field in the database
      */
     public function delete($signature_id)
@@ -224,7 +226,7 @@ class guilro_petitions_Signature
 
     /**
      * Determines whether an email address has previously been used to sign the petition.
-     * 
+     *
      * @param string $email       email address
      * @param int    $petition_id the petition whose signatures we are searching
      *
@@ -290,7 +292,7 @@ class guilro_petitions_Signature
 
     /**
      * Reads a signature record from the database and poppulates the object with it's results.
-     * 
+     *
      * @param int $signature_id value of the signature's 'id' field in the database
      */
     public function retrieve($signature_id)
@@ -310,7 +312,7 @@ class guilro_petitions_Signature
     /**
      * Retrieves a confirmed signature via its confirmation_code
      * and populates this object with the result.
-     * 
+     *
      * @param $confirmation_code (string) the signature's confirmation_code
      */
     public function retrieve_confirmed($confirmation_code)
@@ -330,7 +332,7 @@ class guilro_petitions_Signature
     /**
      * Retrieves unconfirmed signatures from the database
      * Used to re-send confirmation emails from signatures admin screen.
-     * 
+     *
      * @param $petition_id (int) unique 'id' of the petition whose signatures we are searching
      *
      * @return (object) query results
@@ -355,7 +357,7 @@ class guilro_petitions_Signature
 
     /**
      * Poppulates the parameters of this object with values from the database.
-     * 
+     *
      * @param $signature (object) database query results
      */
     private function _poppulate_from_query($signature)

@@ -21,8 +21,10 @@ function guilro_petitions_sendmail()
     include_once 'class.wpml.php';
     $the_signature = new guilro_petitions_Signature();
     $the_petition = new guilro_petitions_Petition();
+    $the_settings = new guilro_petitions_Settings();
+    $the_settings->retrieve();
     $wpml = new guilro_petitions_WPML();
-    $options = get_option('guilro_petitions_options');
+    $options = get_object_vars($the_settings);
 
     // clean posted signature fields
     $the_signature->poppulate_from_post();
