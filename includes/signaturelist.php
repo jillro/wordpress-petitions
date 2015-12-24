@@ -1,12 +1,11 @@
 <?php
 
-global $guilro_petitions_settings;
-
 // register shortcode to display signatures list
 add_shortcode('signaturelist', 'guilro_petitions_signatures_shortcode');
 function guilro_petitions_signatures_shortcode($attr)
 {
     include_once 'class.signaturelist.php';
+    global $guilro_petitions_settings;
     $options = $guilro_petitions_settings->getAll();
 
     $id = 1;
@@ -55,6 +54,7 @@ function guilro_petitions_signaturelist_css($posts)
         return $posts;
     }
 
+    global $guilro_petitions_settings;
     $options = $guilro_petitions_settings->getAll();
 
     // set flag to determine if post contains shortcode

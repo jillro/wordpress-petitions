@@ -1,7 +1,5 @@
 <?php
 
-global $guilro_petitions_settings;
-
 function guilro_petitions_settings_page()
 {
 

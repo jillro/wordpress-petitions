@@ -1,7 +1,5 @@
 <?php
 
-global $guilro_petitions_settings;
-
 /**
  * Class for accessing and manipulating signature data in Guilro Petitions plugin for WordPress.
  */
@@ -55,6 +53,7 @@ class guilro_petitions_Signature
         $sql_context_filter = '';
         // restrict results to either single or double opt-in signatures
         if ($context == 'csv') {
+            global $guilro_petitions_settings;
             $options = $guilro_petitions_settings->getAll();
 
             if ($options['csv_signatures'] == 'single_optin') {

@@ -1,7 +1,5 @@
 <?php
 
-global $guilro_petitions_settings;
-
 // register shortcode to display signatures count
 add_shortcode('signaturecount', 'guilro_petitions_signaturescount_shortcode');
 function guilro_petitions_signaturescount_shortcode($attr)
@@ -35,6 +33,7 @@ function guilro_petitions_emailpetition_shortcode($attr)
         include_once 'class.wpml.php';
         $petition = new guilro_petitions_Petition();
         $wpml = new guilro_petitions_WPML();
+        global $guilro_petitions_settings;
         $options = $guilro_petitions_settings->getAll();
 
         // get petition data from database
@@ -238,6 +237,7 @@ function guilro_petitions_public_css_js($posts)
         return $posts;
     }
 
+    global $guilro_petitions_settings;
     $options = $guilro_petitions_settings->getAll();
     $shortcode_found = false;
 

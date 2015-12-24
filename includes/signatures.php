@@ -1,7 +1,5 @@
 <?php
 
-global $guilro_petitions_settings;
-
 function guilro_petitions_signatures_page()
 {
     // check security: ensure user has authority
@@ -14,6 +12,7 @@ function guilro_petitions_signatures_page()
     include_once 'class.petition.php';
     $the_signatures = new guilro_petitions_Signature();
     $the_petitions = new guilro_petitions_Petition();
+    global $guilro_petitions_settings;
     $options = $guilro_petitions_settings->getAll();
 
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';

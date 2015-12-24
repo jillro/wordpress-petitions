@@ -1,7 +1,5 @@
 <?php
 
-global $guilro_petitions_settings;
-
 /**
  * Class for displaying signatures via [signaturelist] shortcode.
  */
@@ -24,6 +22,7 @@ class guilro_petitions_Signaturelist
     {
         include_once 'class.signature.php';
         $the_signatures = new guilro_petitions_Signature();
+        global $guilro_petitions_settings;
         $options = $guilro_petitions_settings->getAll();
 
         // get list of columns to display - as defined in settings
