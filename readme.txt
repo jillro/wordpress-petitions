@@ -11,7 +11,7 @@ Petitions makes it easy to add petitions to your website and rally your communit
 
 == Description ==
 
-Petitions is a fork from SpeakOut! Email Petitions which was not maintained anymore, itself fork of the SpeakOut! plugin by Kreg Wallace.
+Petitions is a fork from Guilro Petitions which was not maintained anymore, itself fork of the SpeakOut! plugin by Kreg Wallace.
 
 Petitions allows you to easily create petition forms on your site.
 
@@ -163,7 +163,7 @@ The ID number of your petition (required).
 
 == Changelog ==
 
-* 0.1.0 fork from SpeakOut! Email Petitions
+* 0.1.0 fork from Guilro Petitions
 
 == Upgrade Notice ==
 

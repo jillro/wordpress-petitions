@@ -59,7 +59,7 @@ function guilro_petitions_emailpetition_shortcode($attr)
 
                 // compose the petition form
                 $petition_form = '
-					<!-- SpeakOut! Email Petitions '.$guilro_petitions_version.' -->
+					<!-- Guilro Petitions '.$guilro_petitions_version.' -->
 					<div id="dk-speakout-windowshade"></div>
 					<div class="dk-speakout-petition-wrap '.$css_classes.'" id="dk-speakout-petition-'.$petition->id.'" '.$width.'>
 						<h3>'.stripslashes(esc_html($petition->title)).'</h3>

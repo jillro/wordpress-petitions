@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class for accessing and manipulating petition data in SpeakOut! Email Petitions plugin for WordPress.
+ * Class for accessing and manipulating petition data in Guilro Petitions plugin for WordPress.
  */
 class guilro_petitions_Petition
 {
@@ -29,7 +29,7 @@ class guilro_petitions_Petition
 
     /**
      * Retrieves a selection of petition records from the database.
-     * 
+     *
      * @param $start (int) the first record to be retrieved
      * @param $limit (int) the total number of records to be retrieved
      *
@@ -58,7 +58,7 @@ class guilro_petitions_Petition
 
     /**
      * Counts the number of petitions in the database.
-     * 
+     *
      * @return (int) the number of petitions in the database
      */
     public function count()
@@ -281,7 +281,7 @@ class guilro_petitions_Petition
 
     /**
      * Reads a petition record and it's signature count from the database.
-     * 
+     *
      * @param (int) $id value of the petition's 'id' field in the database
      *
      * @return (bool) true if query returns a result, false if no results found
@@ -312,7 +312,7 @@ class guilro_petitions_Petition
 
     /**
      * Updates an existing petition record in the database.
-     * 
+     *
      * @param (int) $id value of the petition's 'id' field in the database
      */
     public function update($id)
@@ -350,7 +350,7 @@ class guilro_petitions_Petition
 
     /**
      * Poppulates the parameters of this object with values from the database.
-     * 
+     *
      * @param (object) $petition database query results
      */
     private function _poppulate_from_query($petition)

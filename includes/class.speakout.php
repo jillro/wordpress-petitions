@@ -1,14 +1,14 @@
 <?php
 
 /**
- * Library of common methods for SpeakOut! Email Petitions plugin for WordPress.
+ * Library of common methods for Guilro Petitions plugin for WordPress.
  */
 class guilro_petitions_SpeakOut
 {
     /**
      * Gets firstname, lastname and email for logged in users
      * Used to auto-populate fields in petition form.
-     * 
+     *
      * @return array with keys: firstname, lastname, email
      */
     public static function userinfo()

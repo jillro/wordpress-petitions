@@ -150,7 +150,7 @@ class guilro_petitions_petition_widget extends WP_Widget
 
             // compose the petition widget and pop-up form
             $petition_widget = '
-				<!-- SpeakOut! Email Petitions '.$guilro_petitions_version.' -->
+				<!-- Guilro Petitions '.$guilro_petitions_version.' -->
 				<div class="dk-speakout-widget-wrap">
 					<h3>'.stripslashes(esc_html($title)).'</h3>
 					<p>'.stripslashes(esc_html($call_to_action)).'</p>

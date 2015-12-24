@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class for accessing and manipulating settings array in SpeakOut! Email Petitions plugin for WordPress.
+ * Class for accessing and manipulating settings array in Guilro Petitions plugin for WordPress.
  */
 class guilro_petitions_Settings
 {

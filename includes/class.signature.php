@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class for accessing and manipulating signature data in SpeakOut! Email Petitions plugin for WordPress.
+ * Class for accessing and manipulating signature data in Guilro Petitions plugin for WordPress.
  */
 class guilro_petitions_Signature
 {

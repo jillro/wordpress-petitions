@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class for sending emails in SpeakOut! Email Petitions plugin for WordPress.
+ * Class for sending emails in Guilro Petitions plugin for WordPress.
  */
 class guilro_petitions_Mail
 {
