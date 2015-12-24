@@ -3,7 +3,7 @@
 // plugin installation routine
 function guilro_petitions_install()
 {
-    global $wpdb, $guilro_petitions_db_petitions, $guilro_petitions_db_signatures, $guilro_petitions_version;
+    global $wpdb, $guilro_petitions_db_petitions, $guilro_petitions_db_signatures, $guilro_petitions_version, $guilro_petitions_db_version;
 
     guilro_petitions_translate();
 
@@ -84,6 +84,7 @@ function guilro_petitions_install()
 
 function guilro_petitions_maybe_update()
 {
+    global $guilro_petitions_db_version;
     set_time_limit(0);
 
     $current_db_version = get_option('guilro_petitions_db_version');

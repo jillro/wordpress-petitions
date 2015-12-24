@@ -8,11 +8,11 @@ Author: Guillaume Royer
 Author URI: http://github.com/guilro
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
-Text Domain: guilro-petitions
+Text Domain: guilro_petitions
 Domain Path: /languages
 */
 
-global $wpdb, $guilro_petitions_db_petitions, $guilro_petitions_db_signatures, $guilro_petitions_version;
+global $wpdb, $guilro_petitions_db_petitions, $guilro_petitions_db_signatures, $guilro_petitions_version, $guilro_petitions_db_version;
 $guilro_petitions_db_petitions = $wpdb->prefix.'guilro_petitions_petitions';
 $guilro_petitions_db_signatures = $wpdb->prefix.'guilro_petitions_signatures';
 $guilro_petitions_version = '0.1.0';
