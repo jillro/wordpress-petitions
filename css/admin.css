@@ -1,19 +1,19 @@
 /* custom plugin icon for h2 headers */
-#dk-speakout #icon-dk-speakout { background: transparent url(../images/icon-emailpetitions-32.png) no-repeat top left; }
+#guilro-petitions #icon-guilro-petitions { background: transparent url(../images/icon-emailpetitions-32.png) no-repeat top left; }
 
 
 /* Settings tabs
 ------------------------------------------------------------------- */
-ul#dk-speakout-tabbar {
+ul#guilro-petitions-tabbar {
 	border-bottom: 1px solid #aaa;
 	margin: 2em 0;
 	padding-left: 1em;
 }
-ul#dk-speakout-tabbar li {
+ul#guilro-petitions-tabbar li {
 	display: inline-block;
 	margin: 0 0 -1px 0;
 }
-ul#dk-speakout-tabbar li a {
+ul#guilro-petitions-tabbar li a {
 	display: inline-block;
 	background: #dcdcdc url(../images/bg-tabs-off.png) repeat-x top left;
 	border-top-right-radius: 6px;
@@ -31,8 +31,8 @@ ul#dk-speakout-tabbar li a {
 	color: #666;
 	cursor: pointer;
 }
-ul#dk-speakout-tabbar li a:hover { color: #21759b; }
-ul#dk-speakout-tabbar li a.dk-speakout-active {
+ul#guilro-petitions-tabbar li a:hover { color: #21759b; }
+ul#guilro-petitions-tabbar li a.guilro-petitions-active {
 	background: #fff;
 	border-top: 1px solid #aaa;
 	border-left: 1px solid #aaa;
@@ -45,106 +45,106 @@ ul#dk-speakout-tabbar li a.dk-speakout-active {
 
 /* Form styles for Add New page
 ------------------------------------------------------------------- */
-#dk-speakout label {
+#guilro-petitions label {
 	display: block;
 	font-weight: bold;
 }
-#dk-speakout label#title-prompt-text { font-weight: normal; }
-#dk-speakout #post-body .postbox label { margin: .5em 6px .25em 3px; }
-#dk-speakout form#dk-speakout-edit-petition textarea { width: 99%; }
-#dk-speakout form#dk-speakout-settings textarea { width: 85%; }
-#dk-speakout .dk-speakout-inline { display: inline; }
-#dk-speakout input[type=text] { margin: 0 0 .5em 0; }
-#dk-speakout .dk-speakout-hidden { display: none; }
-#dk-speakout .dk-speakout-right { text-align: right; }
-#dk-speakout .dk-speakout-subsection { margin-top: .5em; padding-bottom: 5px; }
-#dk-speakout .dk-speakout-subsection label {
+#guilro-petitions label#title-prompt-text { font-weight: normal; }
+#guilro-petitions #post-body .postbox label { margin: .5em 6px .25em 3px; }
+#guilro-petitions form#guilro-petitions-edit-petition textarea { width: 99%; }
+#guilro-petitions form#guilro-petitions-settings textarea { width: 85%; }
+#guilro-petitions .guilro-petitions-inline { display: inline; }
+#guilro-petitions input[type=text] { margin: 0 0 .5em 0; }
+#guilro-petitions .guilro-petitions-hidden { display: none; }
+#guilro-petitions .guilro-petitions-right { text-align: right; }
+#guilro-petitions .guilro-petitions-subsection { margin-top: .5em; padding-bottom: 5px; }
+#guilro-petitions .guilro-petitions-subsection label {
 	font-weight: normal;
 	display: inline;
 }
-#dk-speakout .form-table label { font-weight: normal; }
-#dk-speakout .sends_email {
+#guilro-petitions .form-table label { font-weight: normal; }
+#guilro-petitions .sends_email {
 	background-color: #f9f9f9;
 	margin: -6px -6px 0 -6px;
 	padding: 7px 0 7px 7px;
 	border-bottom: 1px solid #eee;
 }
 body.admin-color-classic .sends_email { background-color: transparent !important; }
-.dk-speakout-petition-content { padding-top: 5px; }
-#dk-speakout #twitter-counter {
+.guilro-petitions-petition-content { padding-top: 5px; }
+#guilro-petitions #twitter-counter {
 	font-size: 1.1em;
 	text-align: right;
 	padding: 3px 7px 0 0;
 }
-.dk-speakout-address input { margin-left: 1.5em !important; }
-.dk-speakout-checkbox label { vertical-align: text-top; }
+.guilro-petitions-address input { margin-left: 1.5em !important; }
+.guilro-petitions-checkbox label { vertical-align: text-top; }
 
 /* error messages for Add / Edit form */
-.dk-speakout-error-msg { display: none; }
-.dk-speakout-error {
+.guilro-petitions-error-msg { display: none; }
+.guilro-petitions-error {
 	border: 1px solid #c00 !important;
 	background-color: #ffebe8 !important;
 }
-#dk-speakout #target_email, #dk-speakout #email_subject, #dk-speakout #greeting { width: 60%; }
+#guilro-petitions #target_email, #guilro-petitions #email_subject, #guilro-petitions #greeting { width: 60%; }
 
 /* alterations to some default WP styles */
-#dk-speakout .postbox h3 { cursor: auto; }
-#dk-speakout .misc-pub-section { font-size: 11px; }
-#dk-speakout #major-publishing-actions { border-top: 1px solid #ddd; }
+#guilro-petitions .postbox h3 { cursor: auto; }
+#guilro-petitions .misc-pub-section { font-size: 11px; }
+#guilro-petitions #major-publishing-actions { border-top: 1px solid #ddd; }
 
-#dk-speakout input#goal { text-align: right; }
+#guilro-petitions input#goal { text-align: right; }
 
-#dk-speakout .table-label {
+#guilro-petitions .table-label {
 	color: #000;
 	font-weight: bold;
 }
-#dk-speakout .table-label span.count {
+#guilro-petitions .table-label span.count {
 	color: #999;
 	font-weight: normal;
 }
 
-#dk-speakout #side-sortables .inside { padding: 0; margin: 5px 0 0 0;}
+#guilro-petitions #side-sortables .inside { padding: 0; margin: 5px 0 0 0;}
 
 /* progress bar styles */
-.dk-speakout-progress {
+.guilro-petitions-progress {
 	border-radius: 2px;
 	background: #e5e5e5 url(../images/bg-progressbar-back-admin.png) repeat-x top left;
 	height: 10px;
 	border: 1px solid #aaa;
 	float: right;
 }
-.dk-speakout-progressbar {
+.guilro-petitions-progressbar {
 	height: 10px;
 	border-right: 1px solid #aaa;
 }
-.dk-speakout-progressbar-low,
-.dk-speakout-progressbar-medium,
-.dk-speakout-progressbar-high,
-.dk-speakout-progressbar-complete {
+.guilro-petitions-progressbar-low,
+.guilro-petitions-progressbar-medium,
+.guilro-petitions-progressbar-high,
+.guilro-petitions-progressbar-complete {
 	background      : transparent url(../images/bg-progressbar.png) repeat-x top left;
 	background-size : 10px 10px;
 }
-.dk-speakout-progressbar-low {
+.guilro-petitions-progressbar-low {
 	background-color : #3c0;
 }
-.dk-speakout-progressbar-medium {
+.guilro-petitions-progressbar-medium {
 	background-color : #09f;
 }
-.dk-speakout-progressbar-high {
+.guilro-petitions-progressbar-high {
 	background-color : #9f07ed;
 }
-.dk-speakout-progressbar-complete {
+.guilro-petitions-progressbar-complete {
 	background-color           : #f00;
 	border-bottom-right-radius : ( @radius - 2px );
 	border-top-right-radius    : ( @radius - 2px );
 }
 
 .guilro_petitions_clear { clear: both; }
-.dk-speakout-inline { display: inline; }
-.dk-speakout-red { color: #900; }
-.dk-speakout-green { color: #090; }
+.guilro-petitions-inline { display: inline; }
+.guilro-petitions-red { color: #900; }
+.guilro-petitions-green { color: #090; }
 
-form#dk-speakout-settings h3 { margin: 2em 0 0 0; }
-.dk-speakout-tablerow:hover { background-color: #ffd; }
-.dk-speakout-tablerow-even { background: #fff; }
-body.admin-color-classic .dk-speakout-tablerow-even { background: #f7fcfe; }
+form#guilro-petitions-settings h3 { margin: 2em 0 0 0; }
+.guilro-petitions-tablerow:hover { background-color: #ffd; }
+.guilro-petitions-tablerow-even { background: #fff; }
+body.admin-color-classic .guilro-petitions-tablerow-even { background: #f7fcfe; }

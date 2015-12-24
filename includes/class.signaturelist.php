@@ -47,24 +47,24 @@ class guilro_petitions_Signaturelist
             if ($context !== 'ajax') { // only include on initial page load (not when paging)
                 $signatures_list = '
 					<!-- signaturelist -->
-					<table class="dk-speakout-signaturelist dk-speakout-signaturelist-'.$id.'">
+					<table class="guilro-petitions-signaturelist guilro-petitions-signaturelist-'.$id.'">
 						<caption>'.$options['signaturelist_header'].'</caption>';
             }
 
             $row_count = 0;
             foreach ($signatures as $signature) {
                 if ($row_count % 2) {
-                    $signatures_list .= '<tr class="dk-speakout-even">';
+                    $signatures_list .= '<tr class="guilro-petitions-even">';
                 } else {
-                    $signatures_list .= '<tr class="dk-speakout-odd">';
+                    $signatures_list .= '<tr class="guilro-petitions-odd">';
                 }
-                $signatures_list .= '<td class="dk-speakout-signaturelist-count">'.number_format($current_signature_number, 0, '.', ',').'</td>';
+                $signatures_list .= '<td class="guilro-petitions-signaturelist-count">'.number_format($current_signature_number, 0, '.', ',').'</td>';
                 $display_lastname = $signature->last_name;
                 // if we have enabled privacy, only show forst letter of surname
                 if ($options['signaturelist_privacy'] == 'enabled') {
                     $display_lastname = substr($signature->last_name, 0, 1).'.';
                 }
-                $signatures_list .= '<td class="dk-speakout-signaturelist-name">'.stripslashes($signature->first_name.' '.$display_lastname).'</td>';
+                $signatures_list .= '<td class="guilro-petitions-signaturelist-name">'.stripslashes($signature->first_name.' '.$display_lastname).'</td>';
 
                 // if we display both city and state, combine them into one column
                 $city = ($display_city)  ? $signature->city : '';
@@ -72,29 +72,29 @@ class guilro_petitions_Signaturelist
                 if ($display_city && $display_state) {
                     // should we separate with a comma?
                     $delimiter = ($city != '' && $state != '') ? ', ' : '';
-                    $signatures_list .= '<td class="dk-speakout-signaturelist-city">'.stripslashes($city.$delimiter.$state).'</td>';
+                    $signatures_list .= '<td class="guilro-petitions-signaturelist-city">'.stripslashes($city.$delimiter.$state).'</td>';
                 }
                 // else keep city or state values in their own column
                 else {
                     if ($display_city) {
-                        $signatures_list  .= '<td class="dk-speakout-signaturelist-city">'.stripslashes($city).'</td>';
+                        $signatures_list  .= '<td class="guilro-petitions-signaturelist-city">'.stripslashes($city).'</td>';
                     }
                     if ($display_state) {
-                        $signatures_list .= '<td class="dk-speakout-signaturelist-state">'.stripslashes($state).'</td>';
+                        $signatures_list .= '<td class="guilro-petitions-signaturelist-state">'.stripslashes($state).'</td>';
                     }
                 }
 
                 if ($display_postcode) {
-                    $signatures_list .= '<td class="dk-speakout-signaturelist-postcode">'.stripslashes($signature->postcode).'</td>';
+                    $signatures_list .= '<td class="guilro-petitions-signaturelist-postcode">'.stripslashes($signature->postcode).'</td>';
                 }
                 if ($display_country) {
-                    $signatures_list  .= '<td class="dk-speakout-signaturelist-country">'.stripslashes($signature->country).'</td>';
+                    $signatures_list  .= '<td class="guilro-petitions-signaturelist-country">'.stripslashes($signature->country).'</td>';
                 }
                 if ($display_custom) {
-                    $signatures_list   .= '<td class="dk-speakout-signaturelist-custom">'.stripslashes($signature->custom_field).'</td>';
+                    $signatures_list   .= '<td class="guilro-petitions-signaturelist-custom">'.stripslashes($signature->custom_field).'</td>';
                 }
                 if ($display_date) {
-                    $signatures_list     .= '<td class="dk-speakout-signaturelist-date">'.date_i18n($dateformat, strtotime($signature->date)).'</td>';
+                    $signatures_list     .= '<td class="guilro-petitions-signaturelist-date">'.date_i18n($dateformat, strtotime($signature->date)).'</td>';
                 }
                 $signatures_list .= '</tr>';
 
@@ -107,10 +107,10 @@ class guilro_petitions_Signaturelist
                 if ($limit != 0 && $start + $limit < $total) {
                     $colspan = (count($columns) + 2);
                     $signatures_list .= '
-					<tr class="dk-speakout-signaturelist-pagelinks">
+					<tr class="guilro-petitions-signaturelist-pagelinks">
 						<td colspan="'.$colspan.'">
-							<a class="dk-speakout-signaturelist-prev dk-speakout-signaturelist-disabled" rel="'.$id.','.$total.','.$limit.','.$total.',0">'.$prevbuttontext.'</a>
-							<a class="dk-speakout-signaturelist-next" rel="'.$id.','.($start + $limit).','.$limit.','.$total.',1">'.$nextbuttontext.'</a>
+							<a class="guilro-petitions-signaturelist-prev guilro-petitions-signaturelist-disabled" rel="'.$id.','.$total.','.$limit.','.$total.',0">'.$prevbuttontext.'</a>
+							<a class="guilro-petitions-signaturelist-next" rel="'.$id.','.($start + $limit).','.$limit.','.$total.',1">'.$nextbuttontext.'</a>
 						</td>
 					</tr>
 					';

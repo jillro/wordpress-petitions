@@ -2,13 +2,13 @@ jQuery( document ).ready( function( $ ) {
 	'use strict';
 
 	// next pagination button is clicked
-	$( '.dk-speakout-signaturelist-next' ).click( function( e ) {
+	$( '.guilro-petitions-signaturelist-next' ).click( function( e ) {
 		e.preventDefault();
 		get_signaturelist( $( this ) );
 	});
 
 	// prev pagination button is clicked
-	$( '.dk-speakout-signaturelist-prev' ).click( function( e ) {
+	$( '.guilro-petitions-signaturelist-prev' ).click( function( e ) {
 		e.preventDefault();
 		get_signaturelist( $( this ) );
 	});
@@ -16,7 +16,7 @@ jQuery( document ).ready( function( $ ) {
 	// pagination: query new signatures and display results
 	function get_signaturelist( button, link ) {
 		// change button appearance to disabled while ajax request is processing
-		$( this ).addClass( 'dk-speakout-signaturelist-disabled' );
+		$( this ).addClass( 'guilro-petitions-signaturelist-disabled' );
 		
 		var link   = button.attr( 'rel' ).split( ',' ),
 			id     = link[0],
@@ -41,10 +41,10 @@ jQuery( document ).ready( function( $ ) {
 
 					toggle_button_display( id, next_link, prev_link );
 
-					$( '.dk-speakout-signaturelist-' + id + ' tr:not(:last-child)' ).remove();
-					$( '.dk-speakout-signaturelist-' + id ).prepend( response );
-					$( '.dk-speakout-signaturelist-' + id + ' .dk-speakout-signaturelist-next' ).attr( 'rel', next_link );
-					$( '.dk-speakout-signaturelist-' + id + ' .dk-speakout-signaturelist-prev' ).attr( 'rel', prev_link );
+					$( '.guilro-petitions-signaturelist-' + id + ' tr:not(:last-child)' ).remove();
+					$( '.guilro-petitions-signaturelist-' + id ).prepend( response );
+					$( '.guilro-petitions-signaturelist-' + id + ' .guilro-petitions-signaturelist-next' ).attr( 'rel', next_link );
+					$( '.guilro-petitions-signaturelist-' + id + ' .guilro-petitions-signaturelist-prev' ).attr( 'rel', prev_link );
 				}
 			);
 		}
@@ -96,17 +96,17 @@ jQuery( document ).ready( function( $ ) {
 
 	function toggle_button_display( id, next_link, prev_link ) {
 		if ( next_link.split( ',' )[4] === '0' ) {
-			$( '.dk-speakout-signaturelist-' + id + ' .dk-speakout-signaturelist-next' ).addClass( 'dk-speakout-signaturelist-disabled' );
+			$( '.guilro-petitions-signaturelist-' + id + ' .guilro-petitions-signaturelist-next' ).addClass( 'guilro-petitions-signaturelist-disabled' );
 		}
 		else {
-			$( '.dk-speakout-signaturelist-' + id + ' .dk-speakout-signaturelist-next' ).removeClass( 'dk-speakout-signaturelist-disabled' );
+			$( '.guilro-petitions-signaturelist-' + id + ' .guilro-petitions-signaturelist-next' ).removeClass( 'guilro-petitions-signaturelist-disabled' );
 		}
 
 		if ( prev_link.split( ',' )[4] === '0' ) {
-			$( '.dk-speakout-signaturelist-' + id + ' .dk-speakout-signaturelist-prev' ).addClass( 'dk-speakout-signaturelist-disabled' );
+			$( '.guilro-petitions-signaturelist-' + id + ' .guilro-petitions-signaturelist-prev' ).addClass( 'guilro-petitions-signaturelist-disabled' );
 		}
 		else {
-			$( '.dk-speakout-signaturelist-' + id + ' .dk-speakout-signaturelist-prev' ).removeClass( 'dk-speakout-signaturelist-disabled' );
+			$( '.guilro-petitions-signaturelist-' + id + ' .guilro-petitions-signaturelist-prev' ).removeClass( 'guilro-petitions-signaturelist-disabled' );
 		}
 	}
 

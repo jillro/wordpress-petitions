@@ -5,93 +5,93 @@ jQuery( document ).ready( function( $ ) {
 ------------------------------------------------------------------- */
 	$( 'input#requires_confirmation' ).change( function () {
 		if ( $( this ).attr( 'checked' ) ) {
-			$( 'div.dk-speakout-returnurl' ).slideDown();
-			$( '#dk-speakout input#return_url' ).focus();
+			$( 'div.guilro-petitions-returnurl' ).slideDown();
+			$( '#guilro-petitions input#return_url' ).focus();
 		} else {
-			$( 'div.dk-speakout-returnurl' ).slideUp();
+			$( 'div.guilro-petitions-returnurl' ).slideUp();
 		}
 	});
 
 	// open or close signature goal settings
 	$( 'input#has_goal' ).change( function () {
 		if ( $( this ).attr( 'checked' ) ) {
-			$( 'div.dk-speakout-goal' ).slideDown();
-			$( '#dk-speakout input#goal' ).focus();
+			$( 'div.guilro-petitions-goal' ).slideDown();
+			$( '#guilro-petitions input#goal' ).focus();
 		} else {
-			$( 'div.dk-speakout-goal' ).slideUp();
+			$( 'div.guilro-petitions-goal' ).slideUp();
 		}
 	});
 
 	// open or close expiration date settings
 	$( 'input#expires' ).change( function () {
 		if ( $( this ).attr( 'checked' ) ) {
-			$( 'div.dk-speakout-date' ).slideDown();
+			$( 'div.guilro-petitions-date' ).slideDown();
 		} else {
-			$( 'div.dk-speakout-date' ).slideUp();
+			$( 'div.guilro-petitions-date' ).slideUp();
 		}
 	});
 
 	// open or close address fields settings
 	$( 'input#display-address' ).change( function () {
 		if ( $( this ).attr( 'checked' ) ) {
-			$( 'div.dk-speakout-address' ).slideDown();
+			$( 'div.guilro-petitions-address' ).slideDown();
 		} else {
-			$( 'div.dk-speakout-address' ).slideUp();
+			$( 'div.guilro-petitions-address' ).slideUp();
 		}
 	});
 
 	// open or close custom field settings
 	$( 'input#displays-custom-field' ).change( function () {
 		if ( $( this ).attr( 'checked' ) ) {
-			$( 'div.dk-speakout-custom-field' ).slideDown();
-			$( '#dk-speakout input#custom-field-label' ).focus();
+			$( 'div.guilro-petitions-custom-field' ).slideDown();
+			$( '#guilro-petitions input#custom-field-label' ).focus();
 		} else {
-			$( 'div.dk-speakout-custom-field' ).slideUp();
+			$( 'div.guilro-petitions-custom-field' ).slideUp();
 		}
 	});
 
 	// open or close email opt-in settings
 	$( 'input#displays-optin' ).change( function () {
 		if ( $( this ).attr( 'checked' ) ) {
-			$( 'div.dk-speakout-optin' ).slideDown();
-			$( '#dk-speakout input#optin-label' ).focus();
+			$( 'div.guilro-petitions-optin' ).slideDown();
+			$( '#guilro-petitions input#optin-label' ).focus();
 		} else {
-			$( 'div.dk-speakout-optin' ).slideUp();
+			$( 'div.guilro-petitions-optin' ).slideUp();
 		}
 	});
 
 	// open or close email header settings
 	if ( $( 'input#sends_email' ).attr( 'checked' ) ) {
-		$( 'div.dk-speakout-email-headers' ).hide();
+		$( 'div.guilro-petitions-email-headers' ).hide();
 	}
 	$( 'input#sends_email' ).change( function () {
 		if ( $( this ).attr( 'checked' ) ) {
-			$( 'div.dk-speakout-email-headers' ).slideUp();
+			$( 'div.guilro-petitions-email-headers' ).slideUp();
 		} else {
-			$( 'div.dk-speakout-email-headers' ).slideDown();
+			$( 'div.guilro-petitions-email-headers' ).slideDown();
 		}
 	});
 
 	// auto-focus the title field on add/edit petitions form if empty
-	if ( $( '#dk-speakout input#title' ).val() === '' ) {
-		$( '#dk-speakout input#title' ).focus();
+	if ( $( '#guilro-petitions input#title' ).val() === '' ) {
+		$( '#guilro-petitions input#title' ).focus();
 	}
 
 	// validate form values before submitting
 	$( '#guilro_petitions_submit' ).click( function() {
 
-		$( '.dk-speakout-error' ).removeClass( 'dk-speakout-error' );
+		$( '.guilro-petitions-error' ).removeClass( 'guilro-petitions-error' );
 
 		var errors     = 0,
 			emailRegEx = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,6})?$/,
-			email      = $( '#dk-speakout-edit-petition #target_email' ).val(),
-			subject    = $( '#dk-speakout-edit-petition #email_subject' ).val(),
-			message    = $( '#dk-speakout-edit-petition #petition_message' ).val(),
-			goal       = $( '#dk-speakout-edit-petition #goal' ).val(),
-			day        = $( '#dk-speakout-edit-petition #day' ).val(),
-			year       = $( '#dk-speakout-edit-petition #year' ).val(),
-			hour       = $( '#dk-speakout-edit-petition #hour' ).val(),
-			minutes    = $( '#dk-speakout-edit-petition #minutes' ).val();
+			email      = $( '#guilro-petitions-edit-petition #target_email' ).val(),
+			subject    = $( '#guilro-petitions-edit-petition #email_subject' ).val(),
+			message    = $( '#guilro-petitions-edit-petition #petition_message' ).val(),
+			goal       = $( '#guilro-petitions-edit-petition #goal' ).val(),
+			day        = $( '#guilro-petitions-edit-petition #day' ).val(),
+			year       = $( '#guilro-petitions-edit-petition #year' ).val(),
+			hour       = $( '#guilro-petitions-edit-petition #hour' ).val(),
+			minutes    = $( '#guilro-petitions-edit-petition #minutes' ).val();
 
 		// if "Do not send email (only collect signatures)" checkbox is not checked
 		if ( !$( 'input#sends_email' ).attr( 'checked' ) ) {
@@ -99,25 +99,25 @@ jQuery( document ).ready( function( $ ) {
 			var emails = email.split( ',' );
 			for ( var i=0; i < emails.length; i++ ) {
 				if ( emails[i].trim() === '' || !emailRegEx.test( emails[i].trim() ) ) { // must include valid email address
-					$( '#dk-speakout-edit-petition #target_email' ).addClass( 'dk-speakout-error' );
+					$( '#guilro-petitions-edit-petition #target_email' ).addClass( 'guilro-petitions-error' );
 					errors ++;
 				}
 			}
 			
 			if ( subject === '' ) { // must include subject
-				$( '#dk-speakout-edit-petition #email_subject' ).addClass( 'dk-speakout-error' );
+				$( '#guilro-petitions-edit-petition #email_subject' ).addClass( 'guilro-petitions-error' );
 				errors ++;
 			}
 		}
 		if ( message === '' ) { // must include petition message
-			$( '#dk-speakout-edit-petition #petition_message' ).addClass( 'dk-speakout-error' );
+			$( '#guilro-petitions-edit-petition #petition_message' ).addClass( 'guilro-petitions-error' );
 			errors ++;
 		}
 
 		// if "Set signature goal" checkbox is checked
 		if ( $( 'input#has_goal' ).attr( 'checked' ) ) {
 			if ( isNaN( goal ) ) { // only numbers are allowed
-				$( '#dk-speakout-edit-petition #goal' ).addClass( 'dk-speakout-error' );
+				$( '#guilro-petitions-edit-petition #goal' ).addClass( 'guilro-petitions-error' );
 				errors ++;
 			}
 		}
@@ -125,19 +125,19 @@ jQuery( document ).ready( function( $ ) {
 		// if "Set expiration date" checkbox is checked
 		if ( $( 'input#expires' ).attr( 'checked' ) ) {
 			if ( isNaN( day ) ) { // only numbers are allowed
-				$( '#dk-speakout-edit-petition #day' ).addClass( 'dk-speakout-error' );
+				$( '#guilro-petitions-edit-petition #day' ).addClass( 'guilro-petitions-error' );
 				errors ++;
 			}
 			if ( isNaN( year ) ) { // only numbers are allowed
-				$( '#dk-speakout-edit-petition #year' ).addClass( 'dk-speakout-error' );
+				$( '#guilro-petitions-edit-petition #year' ).addClass( 'guilro-petitions-error' );
 				errors ++;
 			}
 			if ( isNaN( hour ) ) { // only numbers are allowed
-				$( '#dk-speakout-edit-petition #hour' ).addClass( 'dk-speakout-error' );
+				$( '#guilro-petitions-edit-petition #hour' ).addClass( 'guilro-petitions-error' );
 				errors ++;
 			}
 			if ( isNaN( minutes ) ) { // only numbers are allowed
-				$( '#dk-speakout-edit-petition #minutes' ).addClass( 'dk-speakout-error' );
+				$( '#guilro-petitions-edit-petition #minutes' ).addClass( 'guilro-petitions-error' );
 				errors ++;
 			}
 		}
@@ -154,10 +154,10 @@ jQuery( document ).ready( function( $ ) {
 				$( '#country' ).removeAttr( 'checked' );
 			}
 
-			$( 'form#dk-speakout-edit-petition' ).submit();
+			$( 'form#guilro-petitions-edit-petition' ).submit();
 		}
 		else {
-			$( '.dk-speakout-error-msg' ).fadeIn();
+			$( '.guilro-petitions-error-msg' ).fadeIn();
 		}
 
 		return false;
@@ -190,13 +190,13 @@ jQuery( document ).ready( function( $ ) {
 ------------------------------------------------------------------- */
 	// display confirmation box when user tries to delete a petition
 	// warns that all signatures associated with the petition will also be deleted
-	$( '.dk-speakout-delete-petition' ).click( function( e ) {
+	$( '.guilro-petitions-delete-petition' ).click( function( e ) {
 		e.preventDefault();
 
 		var delete_link = $( this ).attr( 'href' );
 		// confirmation message is contained in a hidden div in the HTML
 		// so that it is accessible to PHP translation methods
-		var confirm_message = $( '#dk-speakout-delete-confirmation' ).html();
+		var confirm_message = $( '#guilro-petitions-delete-confirmation' ).html();
 		// add new line characters for nicer confirm msg display
 		confirm_message = confirm_message.replace( '? ', '?\n\n' );
 		// display confirmation box
@@ -211,10 +211,10 @@ jQuery( document ).ready( function( $ ) {
 ------------------------------------------------------------------- */
 	// Select box navigation on Signatures page
 	// to switch between different petitions
-	$('#dk-speakout-switch-petition').change( function() {
+	$('#guilro-petitions-switch-petition').change( function() {
 		var page    = 'guilro_petitions_signatures',
 			action  = 'petition',
-			pid     = $('#dk-speakout-switch-petition option:selected').val(),
+			pid     = $('#guilro-petitions-switch-petition option:selected').val(),
 			baseurl = String( document.location ).split( '?' ),
 			newurl  = baseurl[0] + '?page=' + page + '&action=' + action + '&pid=' + pid;
 		document.location = newurl;
@@ -222,13 +222,13 @@ jQuery( document ).ready( function( $ ) {
 
 	// display confirmation box when user tries to re-send confirmation emails
 	// warns that a bunch of emails will be sent out if they hit OK
-	$( 'a#dk-speakout-reconfirm' ).click( function( e ) {
+	$( 'a#guilro-petitions-reconfirm' ).click( function( e ) {
 		e.preventDefault();
 
 		var link = $( this ).attr( 'href' );
 		// confirmation message is contained in a hidden div in the HTML
 		// so that it is accessible to PHP translation methods
-		var confirm_message = $( '#dk-speakout-reconfirm-confirmation' ).html();
+		var confirm_message = $( '#guilro-petitions-reconfirm-confirmation' ).html();
 		// add new line characters for nicer confirm msg display
 		confirm_message = confirm_message.replace( '? ', '?\n\n' );
 		// display confirm box
@@ -240,17 +240,17 @@ jQuery( document ).ready( function( $ ) {
 	});
 
 	// stripe the table rows
-	$( 'tr.dk-speakout-tablerow:even' ).addClass( 'dk-speakout-tablerow-even' );
+	$( 'tr.guilro-petitions-tablerow:even' ).addClass( 'guilro-petitions-tablerow-even' );
 
 /* Pagination for Signatures and Petitions pages
 ------------------------------------------------------------------- */
 	// when new page number is entered using the form on paginated admin pages,
 	// construct a new url string to pass along the variables needed to update page
 	// and redirect to the new url
-	$( '#dk-speakout-pager' ).submit( function() {
-		var page        = $( '#dk-speakout-page' ).val(),
-			paged       = $( '#dk-speakout-paged' ).val(),
-			total_pages = $( '#dk-speakout-total-pages' ).val(),
+	$( '#guilro-petitions-pager' ).submit( function() {
+		var page        = $( '#guilro-petitions-page' ).val(),
+			paged       = $( '#guilro-petitions-paged' ).val(),
+			total_pages = $( '#guilro-petitions-total-pages' ).val(),
 			baseurl     = String( document.location ).split( '?' ),
 			newurl      = baseurl[0] + '?page=' + page + '&paged=' + paged + '&total_pages=' + total_pages;
 		document.location = newurl;
@@ -260,23 +260,23 @@ jQuery( document ).ready( function( $ ) {
 /* Settings page
 ------------------------------------------------------------------- */
 	// make the correct tab active on page load
-	var currentTab = $( 'input#dk-speakout-tab' ).val();
+	var currentTab = $( 'input#guilro-petitions-tab' ).val();
 	$( '#' + currentTab ).show();
-	$( 'ul#dk-speakout-tabbar li a.' + currentTab ).addClass( 'dk-speakout-active' );
+	$( 'ul#guilro-petitions-tabbar li a.' + currentTab ).addClass( 'guilro-petitions-active' );
 
 	// switch tabs when they are clicked
-	$( 'ul#dk-speakout-tabbar li a' ).click( function( e ) {
+	$( 'ul#guilro-petitions-tabbar li a' ).click( function( e ) {
 		e.preventDefault();
 
 		// tab bar display
-		$( 'ul#dk-speakout-tabbar li a' ).removeClass( 'dk-speakout-active' );
-		$( this ).addClass( 'dk-speakout-active' );
+		$( 'ul#guilro-petitions-tabbar li a' ).removeClass( 'guilro-petitions-active' );
+		$( this ).addClass( 'guilro-petitions-active' );
 
 		// content sections display
-		$( '.dk-speakout-tabcontent' ).hide();
+		$( '.guilro-petitions-tabcontent' ).hide();
 
 		var newTab = $( this ).attr( 'rel' );
-		$( 'input#dk-speakout-tab' ).val( newTab );
+		$( 'input#guilro-petitions-tab' ).val( newTab );
 
 		$( '#' + newTab ).show();
 	});

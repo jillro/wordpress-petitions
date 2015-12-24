@@ -15,7 +15,7 @@ function guilro_petitions_settings_page()
     $wpml = new guilro_petitions_WPML();
 
     $action = isset($_REQUEST['action']) ? $_REQUEST['action'] : '';
-    $tab = isset($_REQUEST['tab']) ? $_REQUEST['tab'] : 'dk-speakout-tab-01';
+    $tab = isset($_REQUEST['tab']) ? $_REQUEST['tab'] : 'guilro-petitions-tab-01';
 
     switch ($action) {
 

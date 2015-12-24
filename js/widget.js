@@ -2,22 +2,22 @@ jQuery( document ).ready( function( $ ) {
 	'use strict';
 
 	// display required asteriscs
-	$( '.dk-speakout-widget-popup-wrap label.required' ).append('<span> *</span>');
+	$( '.guilro-petitions-widget-popup-wrap label.required' ).append('<span> *</span>');
 
 	// run only if widget is on the page
-	if( $( '.dk-speakout-widget-wrap' ).length ) {
-		$( '.dk-speakout-widget-button' ).click( function( e ) {
+	if( $( '.guilro-petitions-widget-wrap' ).length ) {
+		$( '.guilro-petitions-widget-button' ).click( function( e ) {
 			var petition_form = '#' + $( this ).attr( 'rel' ),
 				screenHeight  = $( document ).height(),
 				screenWidth   = $( window ).width(),
 				windowHeight  = $( window ).height(),
 				windowWidth   = $( window ).width();
 
-			$( '#dk-speakout-widget-windowshade' ).css( {
+			$( '#guilro-petitions-widget-windowshade' ).css( {
 				'width'  : screenWidth,
 				'height' : screenHeight
 			});
-			$( '#dk-speakout-widget-windowshade' ).fadeTo( 500, 0.8 );
+			$( '#guilro-petitions-widget-windowshade' ).fadeTo( 500, 0.8 );
 
 			// center the pop-up window
 			$( petition_form ).css( 'top',  ( ( windowHeight / 2 ) - ( $( petition_form ).height() / 2 ) ) );
@@ -29,57 +29,57 @@ jQuery( document ).ready( function( $ ) {
 
 		/* Close the pop-up petition form */
 		// by clicking windowshade area
-		$( '#dk-speakout-widget-windowshade' ).click( function () {
+		$( '#guilro-petitions-widget-windowshade' ).click( function () {
 			$( this ).fadeOut( 'slow' );
-			$( '.dk-speakout-widget-popup-wrap' ).hide();
+			$( '.guilro-petitions-widget-popup-wrap' ).hide();
 		});
 		// or by clicking the close button
-		$( '.dk-speakout-widget-close' ).click( function() {
-			$( '#dk-speakout-widget-windowshade' ).fadeOut( 'slow' );
-			$( '.dk-speakout-widget-popup-wrap' ).hide();
+		$( '.guilro-petitions-widget-close' ).click( function() {
+			$( '#guilro-petitions-widget-windowshade' ).fadeOut( 'slow' );
+			$( '.guilro-petitions-widget-popup-wrap' ).hide();
 		});
 		// or by pressing ESC
 		$( document ).keyup( function( e ) {
 			if ( e.keyCode === 27 ) {
-				$( '#dk-speakout-widget-windowshade' ).fadeOut( 'slow' );
-				$( '.dk-speakout-widget-popup-wrap' ).hide();
+				$( '#guilro-petitions-widget-windowshade' ).fadeOut( 'slow' );
+				$( '.guilro-petitions-widget-popup-wrap' ).hide();
 			}
 		});
 
 		// process petition form submissions
-		$( '.dk-speakout-widget-submit' ).click( function( e ) {
+		$( '.guilro-petitions-widget-submit' ).click( function( e ) {
 			e.preventDefault();
 
 			var id             = $( this ).attr( 'name' ),
 				current_url    = document.URL,
-				share_url      = $( '#dk-speakout-widget-shareurl-' + id ).val(),
-				posttitle      = $( '#dk-speakout-widget-posttitle-' + id ).val(),
-				tweet          = $( '#dk-speakout-widget-tweet-' + id ).val(),
-				lang           = $( '#dk-speakout-widget-lang-' + id ).val(),
-				firstname      = $( '#dk-speakout-widget-first-name-' + id ).val(),
-				lastname       = $( '#dk-speakout-widget-last-name-' + id ).val(),
-				email          = $( '#dk-speakout-widget-email-' + id ).val(),
-				email_confirm  = $( '#dk-speakout-widget-email-confirm-' + id ).val(),
-				street         = $( '#dk-speakout-widget-street-' + id ).val(),
-				city           = $( '#dk-speakout-widget-city-' + id ).val(),
-				state          = $( '#dk-speakout-widget-state-' + id ).val(),
-				postcode       = $( '#dk-speakout-widget-postcode-' + id ).val(),
-				country        = $( '#dk-speakout-widget-country-' + id ).val(),
-				custom_field   = $( '#dk-speakout-widget-custom-field-' + id ).val(),
-				custom_message = $( 'textarea#dk-speakout-widget-message-' + id ).val(),
+				share_url      = $( '#guilro-petitions-widget-shareurl-' + id ).val(),
+				posttitle      = $( '#guilro-petitions-widget-posttitle-' + id ).val(),
+				tweet          = $( '#guilro-petitions-widget-tweet-' + id ).val(),
+				lang           = $( '#guilro-petitions-widget-lang-' + id ).val(),
+				firstname      = $( '#guilro-petitions-widget-first-name-' + id ).val(),
+				lastname       = $( '#guilro-petitions-widget-last-name-' + id ).val(),
+				email          = $( '#guilro-petitions-widget-email-' + id ).val(),
+				email_confirm  = $( '#guilro-petitions-widget-email-confirm-' + id ).val(),
+				street         = $( '#guilro-petitions-widget-street-' + id ).val(),
+				city           = $( '#guilro-petitions-widget-city-' + id ).val(),
+				state          = $( '#guilro-petitions-widget-state-' + id ).val(),
+				postcode       = $( '#guilro-petitions-widget-postcode-' + id ).val(),
+				country        = $( '#guilro-petitions-widget-country-' + id ).val(),
+				custom_field   = $( '#guilro-petitions-widget-custom-field-' + id ).val(),
+				custom_message = $( 'textarea#guilro-petitions-widget-message-' + id ).val(),
 				optin          = '',
-				ajaxloader     = $( '#dk-speakout-widget-ajaxloader-' + id );
+				ajaxloader     = $( '#guilro-petitions-widget-ajaxloader-' + id );
 
 			if ( share_url === '' ) {
 				share_url = current_url.split('#')[0];
 			}
 
-			if ( $( '#dk-speakout-widget-optin-' + id ).attr( 'checked' ) ) {
+			if ( $( '#guilro-petitions-widget-optin-' + id ).attr( 'checked' ) ) {
 				optin = 'on';
 			}
 
 			// make sure error notices are turned off before checking for new errors
-			$( '#dk-speakout-widget-popup-wrap-' + id + ' input' ).removeClass( 'dk-speakout-widget-error' );
+			$( '#guilro-petitions-widget-popup-wrap-' + id + ' input' ).removeClass( 'guilro-petitions-widget-error' );
 
 			// validate form values
 			var errors = 0,
@@ -87,21 +87,21 @@ jQuery( document ).ready( function( $ ) {
 
 			if ( email_confirm !== undefined && email_confirm !== email ) {
 				if ( email_confirm !== email ) {
-					$( '#dk-speakout-widget-email-' + id ).addClass( 'dk-speakout-widget-error' );
-					$( '#dk-speakout-widget-email-confirm-' + id ).addClass( 'dk-speakout-widget-error' );
+					$( '#guilro-petitions-widget-email-' + id ).addClass( 'guilro-petitions-widget-error' );
+					$( '#guilro-petitions-widget-email-confirm-' + id ).addClass( 'guilro-petitions-widget-error' );
 					errors ++;
 				}
 			}
 			if ( email === '' || !emailRegEx.test( email ) ) {
-				$( '#dk-speakout-widget-email-' + id ).addClass( 'dk-speakout-widget-error' );
+				$( '#guilro-petitions-widget-email-' + id ).addClass( 'guilro-petitions-widget-error' );
 				errors ++;
 			}
 			if ( firstname === '' ) {
-				$( '#dk-speakout-widget-first-name-' + id ).addClass( 'dk-speakout-widget-error' );
+				$( '#guilro-petitions-widget-first-name-' + id ).addClass( 'guilro-petitions-widget-error' );
 				errors ++;
 			}
 			if ( lastname === '' ) {
-				$( '#dk-speakout-widget-last-name-' + id ).addClass( 'dk-speakout-widget-error' );
+				$( '#guilro-petitions-widget-last-name-' + id ).addClass( 'guilro-petitions-widget-error' );
 				errors ++;
 			}
 
@@ -134,22 +134,22 @@ jQuery( document ).ready( function( $ ) {
 				// submit form data and handle ajax response
 				$.post( guilro_petitions_widget_js.ajaxurl, data,
 					function( response ) {
-						var response_class = 'dk-speakout-widget-response-success';
+						var response_class = 'guilro-petitions-widget-response-success';
 						if ( response.status === 'error' ) {
-							response_class = 'dk-speakout-widget-response-error';
+							response_class = 'guilro-petitions-widget-response-error';
 						}
-						$( '#dk-speakout-widget-popup-wrap-' + id + ' .dk-speakout-widget-form' ).hide();
-						$( '.dk-speakout-widget-response' ).addClass( response_class );
-						$( '#dk-speakout-widget-popup-wrap-' + id + ' .dk-speakout-widget-response' ).fadeIn().html( response.message );
-						$( '#dk-speakout-widget-popup-wrap-' + id + ' .dk-speakout-widget-share' ).fadeIn();
+						$( '#guilro-petitions-widget-popup-wrap-' + id + ' .guilro-petitions-widget-form' ).hide();
+						$( '.guilro-petitions-widget-response' ).addClass( response_class );
+						$( '#guilro-petitions-widget-popup-wrap-' + id + ' .guilro-petitions-widget-response' ).fadeIn().html( response.message );
+						$( '#guilro-petitions-widget-popup-wrap-' + id + ' .guilro-petitions-widget-share' ).fadeIn();
 
 						// launch Facebook sharing window
-						$( '.dk-speakout-widget-facebook' ).click( function() {
+						$( '.guilro-petitions-widget-facebook' ).click( function() {
 							var url = 'http://www.facebook.com/sharer.php?u=' + share_url + '&t=' + posttitle;
 							window.open( url, 'facebook', 'height=420,width=550,left=100,top=100,resizable=yes,location=no,status=no,toolbar=no' );
 						});
 						// launch Twitter sharing window
-						$( '.dk-speakout-widget-twitter' ).click( function() {
+						$( '.guilro-petitions-widget-twitter' ).click( function() {
 							var url = 'http://twitter.com/share?url=' + share_url + '&text=' + tweet;
 							window.open( url, 'twitter', 'height=420,width=550,left=100,top=100,resizable=yes,location=no,status=no,toolbar=no' );
 							ajaxloader.css({ 'visibility' : 'hidden'});

@@ -2,43 +2,43 @@ jQuery( document ).ready( function( $ ) {
 	'use strict';
 
 	// display required asterisks
-	$( '.dk-speakout-petition label.required' ).append( '<span> *</span>');
+	$( '.guilro-petitions-petition label.required' ).append( '<span> *</span>');
 
 /*
 -------------------------------
 	Form submission
 -------------------------------
 */
-	$( '.dk-speakout-submit' ).click( function( e ) {
+	$( '.guilro-petitions-submit' ).click( function( e ) {
 		e.preventDefault();
 
 		var id             = $( this ).attr( 'name' ),
-			lang           = $( '#dk-speakout-lang-' + id ).val(),
-			firstname      = $( '#dk-speakout-first-name-' + id ).val(),
-			lastname       = $( '#dk-speakout-last-name-' + id ).val(),
-			email          = $( '#dk-speakout-email-' + id ).val(),
-			email_confirm  = $( '#dk-speakout-email-confirm-' + id ).val(),
-			street         = $( '#dk-speakout-street-' + id ).val(),
-			city           = $( '#dk-speakout-city-' + id ).val(),
-			state          = $( '#dk-speakout-state-' + id ).val(),
-			postcode       = $( '#dk-speakout-postcode-' + id ).val(),
-			country        = $( '#dk-speakout-country-' + id ).val(),
-			custom_field   = $( '#dk-speakout-custom-field-' + id ).val(),
-			custom_message = $( '.dk-speakout-message-' + id ).val(),
+			lang           = $( '#guilro-petitions-lang-' + id ).val(),
+			firstname      = $( '#guilro-petitions-first-name-' + id ).val(),
+			lastname       = $( '#guilro-petitions-last-name-' + id ).val(),
+			email          = $( '#guilro-petitions-email-' + id ).val(),
+			email_confirm  = $( '#guilro-petitions-email-confirm-' + id ).val(),
+			street         = $( '#guilro-petitions-street-' + id ).val(),
+			city           = $( '#guilro-petitions-city-' + id ).val(),
+			state          = $( '#guilro-petitions-state-' + id ).val(),
+			postcode       = $( '#guilro-petitions-postcode-' + id ).val(),
+			country        = $( '#guilro-petitions-country-' + id ).val(),
+			custom_field   = $( '#guilro-petitions-custom-field-' + id ).val(),
+			custom_message = $( '.guilro-petitions-message-' + id ).val(),
 			optin          = '',
-			ajaxloader     = $( '#dk-speakout-ajaxloader-' + id );
+			ajaxloader     = $( '#guilro-petitions-ajaxloader-' + id );
 
 		// toggle use of .text() / .val() to read from edited textarea properly on Firefox
-		if ( $( '#dk-speakout-textval-' + id ).val() === 'text' ) {
-			custom_message = $( '.dk-speakout-message-' + id ).text();
+		if ( $( '#guilro-petitions-textval-' + id ).val() === 'text' ) {
+			custom_message = $( '.guilro-petitions-message-' + id ).text();
 		}
 
-		if ( $( '#dk-speakout-optin-' + id ).attr( 'checked' ) ) {
+		if ( $( '#guilro-petitions-optin-' + id ).attr( 'checked' ) ) {
 			optin = 'on';
 		}
 
 		// make sure error notices are turned off before checking for new errors
-		$( '#dk-speakout-petition-' + id + ' input' ).removeClass( 'dk-speakout-error' );
+		$( '#guilro-petitions-petition-' + id + ' input' ).removeClass( 'guilro-petitions-error' );
 
 		// validate form values
 		var errors = 0,
@@ -46,21 +46,21 @@ jQuery( document ).ready( function( $ ) {
 
 		if ( email_confirm !== undefined ) {
 			if ( email_confirm !== email ) {
-				$( '#dk-speakout-email-' + id ).addClass( 'dk-speakout-error' );
-				$( '#dk-speakout-email-confirm-' + id ).addClass( 'dk-speakout-error' );
+				$( '#guilro-petitions-email-' + id ).addClass( 'guilro-petitions-error' );
+				$( '#guilro-petitions-email-confirm-' + id ).addClass( 'guilro-petitions-error' );
 				errors ++;
 			}
 		}
 		if ( email === '' || ! emailRegEx.test( email ) ) {
-			$( '#dk-speakout-email-' + id ).addClass( 'dk-speakout-error' );
+			$( '#guilro-petitions-email-' + id ).addClass( 'guilro-petitions-error' );
 			errors ++;
 		}
 		if ( firstname === '' ) {
-			$( '#dk-speakout-first-name-' + id ).addClass( 'dk-speakout-error' );
+			$( '#guilro-petitions-first-name-' + id ).addClass( 'guilro-petitions-error' );
 			errors ++;
 		}
 		if ( lastname === '' ) {
-			$( '#dk-speakout-last-name-' + id ).addClass( 'dk-speakout-error' );
+			$( '#guilro-petitions-last-name-' + id ).addClass( 'guilro-petitions-error' );
 			errors ++;
 		}
 
@@ -93,13 +93,13 @@ jQuery( document ).ready( function( $ ) {
 			// submit form data and handle ajax response
 			$.post( guilro_petitions_js.ajaxurl, data,
 				function( response ) {
-					var response_class = 'dk-speakout-response-success';
+					var response_class = 'guilro-petitions-response-success';
 					if ( response.status === 'error' ) {
-						response_class = 'dk-speakout-response-error';
+						response_class = 'guilro-petitions-response-error';
 					}
-					$( '#dk-speakout-petition-' + id + ' .dk-speakout-petition' ).fadeTo( 400, 0.35 );
-					$( '#dk-speakout-petition-' + id + ' .dk-speakout-response' ).addClass( response_class );
-					$( '#dk-speakout-petition-' + id + ' .dk-speakout-response' ).fadeIn().html( response.message );
+					$( '#guilro-petitions-petition-' + id + ' .guilro-petitions-petition' ).fadeTo( 400, 0.35 );
+					$( '#guilro-petitions-petition-' + id + ' .guilro-petitions-response' ).addClass( response_class );
+					$( '#guilro-petitions-petition-' + id + ' .guilro-petitions-response' ).fadeIn().html( response.message );
 					ajaxloader.css({ 'visibility' : 'hidden'});
 				}, 'json'
 			);
@@ -107,11 +107,11 @@ jQuery( document ).ready( function( $ ) {
 	});
 
 	// launch Facebook sharing window
-	$( '.dk-speakout-facebook' ).click( function( e ) {
+	$( '.guilro-petitions-facebook' ).click( function( e ) {
 		e.preventDefault();
 
 		var id           = $( this ).attr( 'rel' ),
-			posttitle    = $( '#dk-speakout-posttitle-' + id ).val(),
+			posttitle    = $( '#guilro-petitions-posttitle-' + id ).val(),
 			share_url    = document.URL,
 			facebook_url = 'http://www.facebook.com/sharer.php?u=' + share_url + '&amp;t=' + posttitle;
 
@@ -119,11 +119,11 @@ jQuery( document ).ready( function( $ ) {
 	});
 
 	// launch Twitter sharing window
-	$( '.dk-speakout-twitter' ).click( function( e ) {
+	$( '.guilro-petitions-twitter' ).click( function( e ) {
 		e.preventDefault();
 
 		var id          = $( this ).attr( 'rel' ),
-			tweet       = $( '#dk-speakout-tweet-' + id ).val(),
+			tweet       = $( '#guilro-petitions-tweet-' + id ).val(),
 			current_url = document.URL,
 			share_url   = current_url.split('#')[0],
 			twitter_url = 'http://twitter.com/share?url=' + share_url + '&text=' + tweet;
@@ -136,7 +136,7 @@ jQuery( document ).ready( function( $ ) {
 	Petition reader popup
 -------------------------------
  */
-	$('a.dk-speakout-readme').click( function( e ) {
+	$('a.guilro-petitions-readme').click( function( e ) {
 		e.preventDefault();
 
 		var id = $( this ).attr( 'rel' ),
@@ -151,67 +151,67 @@ jQuery( document ).ready( function( $ ) {
 			readerWidth  = 640,
 			readerTop    = ( ( windowHeight / 2 ) - ( readerHeight / 2 ) ),
 			readerLeft   = ( ( windowWidth / 2 ) - ( readerWidth / 2 ) ),
-			petitionText = $( 'div#dk-speakout-message-' + id ).html(),
-			reader       = '<div id="dk-speakout-reader"><div id="dk-speakout-reader-close"></div><div id="dk-speakout-reader-content"></div></div>';
+			petitionText = $( 'div#guilro-petitions-message-' + id ).html(),
+			reader       = '<div id="guilro-petitions-reader"><div id="guilro-petitions-reader-close"></div><div id="guilro-petitions-reader-content"></div></div>';
 
 		// set this to toggle use of .val() / .text() so that Firefox  will read from editable-message textarea as expected
-		$( '#dk-speakout-textval-' + id ).val('text');
+		$( '#guilro-petitions-textval-' + id ).val('text');
 
 		// use textarea for editable petition messages
 		if ( petitionText === undefined ) {
-			petitionText = $( '#dk-speakout-message-editable-' + id ).html();
+			petitionText = $( '#guilro-petitions-message-editable-' + id ).html();
 		}
 
-		$( '#dk-speakout-windowshade' ).css( {
+		$( '#guilro-petitions-windowshade' ).css( {
 				'width'  : screenWidth,
 				'height' : screenHeight
 			});
-			$( '#dk-speakout-windowshade' ).fadeTo( 500, 0.8 );
+			$( '#guilro-petitions-windowshade' ).fadeTo( 500, 0.8 );
 
-		if ( $( '#dk-speakout-reader' ).length > 0 ) {
-			$( '#dk-speakout-reader' ).remove();
+		if ( $( '#guilro-petitions-reader' ).length > 0 ) {
+			$( '#guilro-petitions-reader' ).remove();
 		}
 
 		$( 'body' ).append( reader );
 
-		$('#dk-speakout-reader').css({
+		$('#guilro-petitions-reader').css({
 			position   : 'fixed',
 			left       : sourceLeft,
 			top        : sourceTop,
 			zIndex     : 100002
 		});
 
-		$('#dk-speakout-reader').animate({
+		$('#guilro-petitions-reader').animate({
 			width  : readerWidth,
 			height : readerHeight,
 			top    : readerTop,
 			left   : readerLeft
 		}, 500, function() {
-			$( '#dk-speakout-reader-content' ).html( petitionText );
+			$( '#guilro-petitions-reader-content' ).html( petitionText );
 		});
 
 		/* Close the pop-up petition reader */
 		// by clicking windowshade area
-		$( '#dk-speakout-windowshade' ).click( function () {
+		$( '#guilro-petitions-windowshade' ).click( function () {
 			$( this ).fadeOut( 'slow' );
 			// write edited text to form - using .text() because target textarea has display: none
-			$( '.dk-speakout-message-' + id ).text( $( '#dk-speakout-reader textarea' ).val() );
-			$( '#dk-speakout-reader' ).remove();
+			$( '.guilro-petitions-message-' + id ).text( $( '#guilro-petitions-reader textarea' ).val() );
+			$( '#guilro-petitions-reader' ).remove();
 		});
 		// or by clicking the close button
-		$( '#dk-speakout-reader-close' ).live( 'click', function() {
-			$( '#dk-speakout-windowshade' ).fadeOut( 'slow' );
+		$( '#guilro-petitions-reader-close' ).live( 'click', function() {
+			$( '#guilro-petitions-windowshade' ).fadeOut( 'slow' );
 			// write edited text to form - using .text() because target textarea has display: none
-			$( '.dk-speakout-message-' + id ).text( $( '#dk-speakout-reader textarea' ).val() );
-			$( '#dk-speakout-reader' ).remove();
+			$( '.guilro-petitions-message-' + id ).text( $( '#guilro-petitions-reader textarea' ).val() );
+			$( '#guilro-petitions-reader' ).remove();
 		});
 		// or by pressing ESC
 		$( document ).keyup( function( e ) {
 			if ( e.keyCode === 27 ) {
-				$( '#dk-speakout-windowshade' ).fadeOut( 'slow' );
+				$( '#guilro-petitions-windowshade' ).fadeOut( 'slow' );
 				// write edited text to form - using .text() because target textarea has display: none
-				$( '.dk-speakout-message-' + id ).text( $( '#dk-speakout-reader textarea' ).val() );
-				$( '#dk-speakout-reader' ).remove();
+				$( '.guilro-petitions-message-' + id ).text( $( '#guilro-petitions-reader textarea' ).val() );
+				$( '#guilro-petitions-reader' ).remove();
 			}
 		});
 
@@ -223,27 +223,27 @@ jQuery( document ).ready( function( $ ) {
 	But it will be removed in future updates
  */
 
-	$( '.dk-speakout-petition-wrap input[type=text]' ).focus( function( e ) {
+	$( '.guilro-petitions-petition-wrap input[type=text]' ).focus( function( e ) {
 		var label = $( this ).siblings( 'label' );
 		if ( $( this ).val() === '' ) {
-			$( this ).siblings( 'label' ).addClass( 'dk-speakout-focus' ).removeClass( 'dk-speakout-blur' );
+			$( this ).siblings( 'label' ).addClass( 'guilro-petitions-focus' ).removeClass( 'guilro-petitions-blur' );
 		}
 		$( this ).blur( function(){
 			if ( this.value === '' ) {
-				label.addClass( 'dk-speakout-blur' ).removeClass( 'dk-speakout-focus' );
+				label.addClass( 'guilro-petitions-blur' ).removeClass( 'guilro-petitions-focus' );
 			}
 		}).focus( function() {
-			label.addClass( 'dk-speakout-focus' ).removeClass( 'dk-speakout-blur' );
+			label.addClass( 'guilro-petitions-focus' ).removeClass( 'guilro-petitions-blur' );
 		}).keydown( function( e ) {
-			label.addClass( 'dk-speakout-focus' ).removeClass( 'dk-speakout-blur' );
+			label.addClass( 'guilro-petitions-focus' ).removeClass( 'guilro-petitions-blur' );
 			$( this ).unbind( e );
 		});
 	});
 
 	// hide labels on filled input fields when page is reloaded
-	$( '.dk-speakout-petition-wrap input[type=text]' ).each( function() {
+	$( '.guilro-petitions-petition-wrap input[type=text]' ).each( function() {
 		if ( $( this ).val() !== '' ) {
-			$( this ).siblings( 'label' ).addClass( 'dk-speakout-focus' );
+			$( this ).siblings( 'label' ).addClass( 'guilro-petitions-focus' );
 		}
 	});
 

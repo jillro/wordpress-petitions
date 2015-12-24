@@ -53,19 +53,19 @@ class guilro_petitions_SpeakOut
 
         // set progress bar color via CSS class
         if ($percent_complete < 25) {
-            $color_class = 'dk-speakout-progressbar-low';
+            $color_class = 'guilro-petitions-progressbar-low';
         } elseif ($percent_complete < 75) {
-            $color_class = 'dk-speakout-progressbar-medium';
+            $color_class = 'guilro-petitions-progressbar-medium';
         } elseif ($percent_complete < 100) {
-            $color_class = 'dk-speakout-progressbar-high';
+            $color_class = 'guilro-petitions-progressbar-high';
         } else {
-            $color_class = 'dk-speakout-progressbar-complete';
+            $color_class = 'guilro-petitions-progressbar-complete';
         }
 
         // create HTML for progress bar display
         if ($goal > 0) {
-            $progressbar = '<div class="dk-speakout-progress" style="width: '.$max_width.'px;">
-								<div class="dk-speakout-progressbar '.$color_class.'" style="width: '.$progressbar_width.'px;"></div>
+            $progressbar = '<div class="guilro-petitions-progress" style="width: '.$max_width.'px;">
+								<div class="guilro-petitions-progressbar '.$color_class.'" style="width: '.$progressbar_width.'px;"></div>
 							</div>';
         }
 
@@ -114,9 +114,9 @@ class guilro_petitions_SpeakOut
         } else {
             $pager_html = '<div class="tablenav-pages">';
         }
-        $pager_html  .= '<form action="" method="post" id="dk-speakout-pager">';
-        $pager_html  .= '<input type="hidden" name="dk-speakout-total-pages" id="dk-speakout-total-pages" value="'.$total_pages.'">';
-        $pager_html  .= '<input type="hidden" name="dk-speakout-page" id="dk-speakout-page" value="'.$page_handle.'">';
+        $pager_html  .= '<form action="" method="post" id="guilro-petitions-pager">';
+        $pager_html  .= '<input type="hidden" name="guilro-petitions-total-pages" id="guilro-petitions-total-pages" value="'.$total_pages.'">';
+        $pager_html  .= '<input type="hidden" name="guilro-petitions-page" id="guilro-petitions-page" value="'.$page_handle.'">';
         $pager_html  .= '<span class="displaying-num">'.$count.' '.__('items', 'guilro_petitions').'</span>';
 
         // first page and previous page links
@@ -130,7 +130,7 @@ class guilro_petitions_SpeakOut
 
         // #page of #pages text, optionally with a form input for changing values
         if ($use_form == true) {
-            $pager_html .= '<span class="paging-input"><input class="current-page" name="dk-speakout-paged" id="dk-speakout-paged" value="'.$current_page.'" size="1" maxlength="4" type="text"> '.__('of').' <span class="total-pages">'.$total_pages.' </span></span>';
+            $pager_html .= '<span class="paging-input"><input class="current-page" name="guilro-petitions-paged" id="guilro-petitions-paged" value="'.$current_page.'" size="1" maxlength="4" type="text"> '.__('of').' <span class="total-pages">'.$total_pages.' </span></span>';
         } else {
             $pager_html .= '<span class="paging-input"> '.$current_page.' '.__('of', 'guilro_petitions').' <span class="total-pages">'.$total_pages.' </span></span>';
         }

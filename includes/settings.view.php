@@ -1,24 +1,24 @@
-<div class="wrap" id="dk-speakout">
+<div class="wrap" id="guilro-petitions">
 
-	<div id="icon-dk-speakout" class="icon32"><br /></div>
+	<div id="icon-guilro-petitions" class="icon32"><br /></div>
 	<h2><?php _e('Email Petitions Settings', 'guilro_petitions'); ?></h2>
 	<?php if ($message_update) {
     echo '<div id="message" class="updated"><p>'.$message_update.'</p></div>';
 } ?>
 
-	<form action="" method="post" id="dk-speakout-settings">
+	<form action="" method="post" id="guilro-petitions-settings">
 		<?php wp_nonce_field($nonce); ?>
 		<input type="hidden" name="action" value="<?php echo $action; ?>" />
-		<input type="hidden" name="tab" id="dk-speakout-tab" value="<?php echo $tab; ?>" />
+		<input type="hidden" name="tab" id="guilro-petitions-tab" value="<?php echo $tab; ?>" />
 
-		<ul id="dk-speakout-tabbar">
-			<li><a class="dk-speakout-tab-01" rel="dk-speakout-tab-01"><?php _e('Petition Form', 'guilro_petitions'); ?></a></li>
-			<li><a class="dk-speakout-tab-02" rel="dk-speakout-tab-02"><?php _e('Signature List', 'guilro_petitions'); ?></a></li>
-			<li><a class="dk-speakout-tab-03" rel="dk-speakout-tab-03"><?php _e('Confirmation Emails', 'guilro_petitions'); ?></a></li>
-			<li><a class="dk-speakout-tab-04" rel="dk-speakout-tab-04"><?php _e('Admin Display', 'guilro_petitions'); ?></a></li>
+		<ul id="guilro-petitions-tabbar">
+			<li><a class="guilro-petitions-tab-01" rel="guilro-petitions-tab-01"><?php _e('Petition Form', 'guilro_petitions'); ?></a></li>
+			<li><a class="guilro-petitions-tab-02" rel="guilro-petitions-tab-02"><?php _e('Signature List', 'guilro_petitions'); ?></a></li>
+			<li><a class="guilro-petitions-tab-03" rel="guilro-petitions-tab-03"><?php _e('Confirmation Emails', 'guilro_petitions'); ?></a></li>
+			<li><a class="guilro-petitions-tab-04" rel="guilro-petitions-tab-04"><?php _e('Admin Display', 'guilro_petitions'); ?></a></li>
 		</ul>
 
-		<div id="dk-speakout-tab-01" class="dk-speakout-hidden dk-speakout-tabcontent">
+		<div id="guilro-petitions-tab-01" class="guilro-petitions-hidden guilro-petitions-tabcontent">
 			<h3><?php _e('Petition Form', 'guilro_petitions'); ?></h3>
 			<table class="form-table">
 				<tr valign="top">
@@ -94,7 +94,7 @@
 			</table>
 		</div>
 
-		<div id="dk-speakout-tab-02" class="dk-speakout-hidden dk-speakout-tabcontent">
+		<div id="guilro-petitions-tab-02" class="guilro-petitions-hidden guilro-petitions-tabcontent">
 			<h3><?php _e('Signature List', 'guilro_petitions'); ?></h3>
 			<table class="form-table">
 				<tr valign="top">
@@ -122,32 +122,32 @@
 						<input type="checkbox" id="sig_city" name="sig_city" <?php if ($the_settings->sig_city == 1) {
     echo 'checked="checked"';
 } ?> /> 
-						<label for="sig_city" class="dk-speakout-inline"><?php _e('City', 'guilro_petitions'); ?></label><br />
+						<label for="sig_city" class="guilro-petitions-inline"><?php _e('City', 'guilro_petitions'); ?></label><br />
 
 						<input type="checkbox" id="sig_state" name="sig_state" <?php if ($the_settings->sig_state == 1) {
     echo 'checked="checked"';
 } ?> /> 
-						<label for="sig_state" class="dk-speakout-inline"><?php _e('State / Province', 'guilro_petitions'); ?></label><br />
+						<label for="sig_state" class="guilro-petitions-inline"><?php _e('State / Province', 'guilro_petitions'); ?></label><br />
 
 						<input type="checkbox" id="sig_postcode" name="sig_postcode" <?php if ($the_settings->sig_postcode == 1) {
     echo 'checked="checked"';
 } ?> /> 
-						<label for="sig_postcode" class="dk-speakout-inline"><?php _e('Post Code', 'guilro_petitions'); ?></label><br />
+						<label for="sig_postcode" class="guilro-petitions-inline"><?php _e('Post Code', 'guilro_petitions'); ?></label><br />
 
 						<input type="checkbox" id="sig_country" name="sig_country" <?php if ($the_settings->sig_country == 1) {
     echo 'checked="checked"';
 } ?> /> 
-						<label for="sig_country"class="dk-speakout-inline"><?php _e('Country', 'guilro_petitions'); ?></label><br />
+						<label for="sig_country"class="guilro-petitions-inline"><?php _e('Country', 'guilro_petitions'); ?></label><br />
 						
 						<input type="checkbox" id="sig_custom" name="sig_custom" <?php if ($the_settings->sig_custom == 1) {
     echo 'checked="checked"';
 } ?> /> 
-						<label for="sig_custom" class="dk-speakout-inline"><?php _e('Custom Field', 'guilro_petitions'); ?></label><br />
+						<label for="sig_custom" class="guilro-petitions-inline"><?php _e('Custom Field', 'guilro_petitions'); ?></label><br />
 
 						<input type="checkbox" id="sig_date" name="sig_date" <?php if ($the_settings->sig_date == 1) {
     echo 'checked="checked"';
 } ?> /> 
-						<label for="sig_date" class="dk-speakout-inline"><?php _e('Date', 'guilro_petitions'); ?></label>
+						<label for="sig_date" class="guilro-petitions-inline"><?php _e('Date', 'guilro_petitions'); ?></label>
 					</td>
 				</tr>
                 <tr valign="top">
@@ -164,7 +164,7 @@
 			</table>
 		</div>
 
-		<div id="dk-speakout-tab-03" class="dk-speakout-hidden dk-speakout-tabcontent">
+		<div id="guilro-petitions-tab-03" class="guilro-petitions-hidden guilro-petitions-tabcontent">
 			<h3><?php _e('Confirmation Emails', 'guilro_petitions'); ?></h3>
 			<table class="form-table">
 				<tr valign="top">
@@ -185,7 +185,7 @@
 			</table>
 		</div>
 
-		<div id="dk-speakout-tab-04" class="dk-speakout-hidden dk-speakout-tabcontent">
+		<div id="guilro-petitions-tab-04" class="guilro-petitions-hidden guilro-petitions-tabcontent">
 			<h3><?php _e('Admin Display', 'guilro_petitions'); ?></h3>
 			<table class="form-table">
 				<tr valign="top">
