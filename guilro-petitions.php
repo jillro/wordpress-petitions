@@ -22,7 +22,7 @@ $guilro_petitions_db_version = '1';
 add_action('init', 'guilro_petitions_translate');
 function guilro_petitions_translate()
 {
-    load_plugin_textdomain('guilro_petitions', false, __DIR__.'/languages');
+    load_plugin_textdomain('guilro_petitions', false, 'guilro-petitions/languages/');
 }
 
 // load admin functions only on admin pages
