@@ -15,7 +15,7 @@ Domain Path: /languages
 global $wpdb, $guilro_petitions_db_petitions, $guilro_petitions_db_signatures, $guilro_petitions_version, $guilro_petitions_db_version, $guilro_petitions_settings;
 $guilro_petitions_db_petitions = $wpdb->prefix.'guilro_petitions_petitions';
 $guilro_petitions_db_signatures = $wpdb->prefix.'guilro_petitions_signatures';
-$guilro_petitions_version = '0.1.3';
+$guilro_petitions_version = '0.1.4';
 $guilro_petitions_db_version = '1';
 
 // enable localizations
