@@ -48,8 +48,9 @@ function guilro_petitions_confirm_email()
             guilro_petitions_Mail::send_petition($the_petition, $the_signature);
         }
 
-        // set up the status message
-        $message = __('Thank you. Your signature has been added to the petition.', 'guilro_petitions');
+        // redirect to page
+        wp_redirect($the_petition->return_url);
+        exit;
     } else {
         // has the signature already been confirmed?
         if ($the_signature->check_confirmation($confirmation_code)) {
@@ -66,7 +67,7 @@ function guilro_petitions_confirm_email()
 		<html>
 		<head>
 			<meta http-equiv="Content-Type" content="text/html; charset='.get_bloginfo('charset').'" />
-			<meta http-equiv="refresh" content="10;'.$the_petition->return_url.'"> 
+			<meta http-equiv="refresh" content="10;'.$the_petition->return_url.'">
 			<title>'.get_bloginfo('name').'</title>
 			<style type="text/css">
 				body {
